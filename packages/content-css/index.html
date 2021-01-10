@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <title>HoziDev CSS</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/destyle.css@2.0.2/destyle.css" />
+    <link rel="stylesheet" href="./lib/index.css" />
+  </head>
+  <body>
+    <div class="hozi-dev-article-content">
+      <h1 id="hozi-dev-content-css">hozi-dev-content-css
+        <a class="header-anchor" href="#hozi-dev-content-css">¶</a>
+      </h1>
+      <p>class名には、.hozi-dev-article-contentを利用する</p>
+      <h2 id="コードブロック">コードブロック
+        <a class="header-anchor" href="#コードブロック">¶</a>
+      </h2>
+      <h2 id="リンク付き要素2"><a href="">リンク付き要素2</a>
+        <a class="header-anchor" href="#コードブロック">¶</a>
+      </h2>
+      <h2 id="preview-asciidoc.nvim"><a href="https://github.com/shuntaka9576/preview-asciidoc.nvim" target="_blank">preview-asciidoc.nvim</a> <a class="header-anchor" href="#preview-asciidoc.nvim">¶</a></h2>
+
+      <p>class名には、.hozi-dev-code-blockを利用する</p>
+      <pre class="hozi-dev-code-block"><code class="language-typescript"><span class="token keyword">export</span> <span class="token keyword">const</span> getStaticProps<span class="token operator">:</span> <span class="token function-variable function">GetStaticProps</span> <span class="token operator">=</span> <span class="token keyword">async</span> <span class="token punctuation">(</span><span class="token punctuation">{</span> params <span class="token punctuation">}</span><span class="token punctuation">)</span> <span class="token operator">=&gt;</span> <span class="token punctuation">{</span>
+  <span class="token keyword">const</span> res <span class="token operator">=</span> <span class="token keyword">await</span> <span class="token function">fetch</span><span class="token punctuation">(</span>
+    <span class="token template-string"><span class="token template-punctuation string">`</span><span class="token interpolation"><span class="token interpolation-punctuation punctuation">${</span>process<span class="token punctuation">.</span>env<span class="token punctuation">.</span><span class="token constant">NEXT_PUBLIC_API_ENDOPOINT</span><span class="token interpolation-punctuation punctuation">}</span></span><span class="token string">/article/</span><span class="token interpolation"><span class="token interpolation-punctuation punctuation">${</span>params<span class="token punctuation">.</span>articleId<span class="token interpolation-punctuation punctuation">}</span></span><span class="token template-punctuation string">`</span></span><span class="token punctuation">,</span>
+  <span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+  <span class="token keyword">const</span> article <span class="token operator">=</span> <span class="token punctuation">(</span><span class="token keyword">await</span> res<span class="token punctuation">.</span><span class="token function">json</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token keyword">as</span> ArticleType<span class="token punctuation">;</span>
+  <span class="token operator">...</span>
+</code></pre>
+      <h2 id="箇条書き">箇条書き
+        <a class="header-anchor" href="#箇条書き">¶</a>
+      </h2>
+      <ul>
+        <li>入れ子</li>
+        <ul>
+          <li>入れ子</li>
+          <li>入れ子</li>
+        </ul>
+        <li>入れ子</li>
+        <li>入れ子</li>
+      </ul>
+      <h2 id="引用">引用
+        <a class="header-anchor" href="#引用">¶</a>
+      </h2>
+      <blockquote>
+        <p>Vercel is a cloud platform for static sites and Serverless Functions that fits perfectly with your workflow. It enables developers to host Jamstack websites and web services that deploy instantly, scale automatically, and requires no supervision, all with no configuration.</p>
+      </blockquote>
+      <h2 id="バッククォートで囲う">バッククォートで囲う場合
+        <a class="header-anchor" href="#バッククォートで囲う場合">¶</a>
+      </h2>
+      <p><code>const a = 24</code>を定義する<p>
+      <h2 id="テーブル">テーブル
+        <a class="header-anchor" href="#テーブル">¶</a>
+     </h2>
+     <table>
+       <thead>
+       <tr>
+         <th>カテゴリ</th>
+         <th>ファミリー</th>
+         <th>ユースケース</th>
+       </tr>
+       </thead>
+         <tbody>
+         <tr>
+           <td>汎用</td>
+           <td>A1, T3, T3a</td>
+           <td>開発環境,web,マイクロサービス</td>
+         </tr>
+         <tr>
+           <td>ストレージ 最適化</td>
+           <td>H1</td>
+           <td>BigData処理、分散型ファ イルシステム</td>
+         </tr>
+         </tbody>
+     </table>
+     <h3 id="%E5%A4%B1%E6%95%97%E4%BE%8B">失敗例 <a class="header-anchor" href="#%E5%A4%B1%E6%95%97%E4%BE%8B">¶</a></h3>
+     <ol>
+       <li>gitのHEADがrelase済みかチェック(release済みの場合リリース済みとして正常終了)</li>
+       <li>リリースバージョンをインタラクティブに選択</li>
+       <li>publishするパッケージを選択</li>
+       <li><code>2.</code>のバージョンで<code>git tag</code>と<code>git push --tags</code>が実行される</li>
+       <li>npmへpublish</li>
+     </ol>
+    </div>
+  </body>
+</html>

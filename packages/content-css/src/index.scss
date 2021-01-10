@@ -1,0 +1,20 @@
+$xs: 374px;
+$sm: 576px;
+$md: 768px;
+
+$breakpoints: (
+  "xs": "screen and (max-width: #{$xs})",
+  "sm": "screen and (max-width: #{$sm})",
+  "md": "screen and (max-width: #{$md})",
+);
+
+@mixin mq($size) {
+  @media #{map-get($breakpoints, $size)} {
+    @content;
+  }
+}
+
+$c-primary-bg: #6E9050;
+
+@import "./_code-block.scss";
+@import "./_content.scss";

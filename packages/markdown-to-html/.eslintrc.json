@@ -1,0 +1,59 @@
+{
+  "extends": [
+    "eslint:recommended",
+    "plugin:@typescript-eslint/eslint-recommended",
+    "plugin:@typescript-eslint/recommended",
+    "plugin:prettier/recommended",
+    "plugin:import/errors",
+    "plugin:import/warnings",
+    "plugin:import/typescript"
+  ],
+  "env": {
+    "node": true
+  },
+  "parser": "@typescript-eslint/parser",
+  "plugins": [
+    "node",
+    "@typescript-eslint"
+  ],
+  "parserOptions": {
+    "sourceType": "module",
+    "project": "./tsconfig.json"
+  },
+  "rules": {
+    "@typescript-eslint/no-non-null-assertion": "off",
+    "@typescript-eslint/naming-convention": [
+      "error",
+      {
+        "selector": "default",
+        "format": ["camelCase"]
+      },
+      {
+        "selector": "class",
+        "format": ["PascalCase"]
+      },
+      {
+        "selector": "typeAlias",
+        "format": ["PascalCase"]
+      },
+      {
+        "selector": "interface",
+        "format": ["PascalCase"]
+      },
+      {
+        "selector": "property",
+        "format": null
+      },
+      {
+        "selector": "variable",
+        "format": ["camelCase", "UPPER_CASE"]
+      }
+    ],
+    "import/order": [
+      "warn", {
+        "groups": ["builtin", "external", "parent", "sibling", "index"],
+        "newlines-between": "always"
+      }
+    ]
+  }
+}

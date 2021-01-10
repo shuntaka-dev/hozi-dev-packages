@@ -1,0 +1,6 @@
+{
+  "*": [
+    "yarn lint:fix",
+    "git add"
+  ]
+}

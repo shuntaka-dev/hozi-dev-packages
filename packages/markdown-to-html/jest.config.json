@@ -1,0 +1,15 @@
+{
+  "collectCoverage": true,
+  "collectCoverageFrom": [
+    "**/*.{ts,tsx}",
+    "!**/node_modules/**",
+    "!**/tests/**"
+  ],
+  "coverageReporters": ["html"],
+  "testMatch": ["**/*.test.ts"],
+  "testEnvironment": "node",
+  "transform": {
+    "^.+\\.tsx?$": "ts-jest"
+  },
+  "roots": ["<rootDir>/__tests__"]
+}
