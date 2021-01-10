@@ -15,6 +15,9 @@
     "clean": "rm -rf ./build",
     "test": "echo no test"
   },
+  "publishConfig": {
+    "access": "public"
+  },
   "devDependencies": {
     "node-sass": "5.0.0"
   }
