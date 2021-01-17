@@ -56,6 +56,14 @@ const convertToHtml = (markdown: string): string => {
         tokens[idx]['attrs']![aIndex][1] = '_blank';
       }
     }
+
+    const relIndex = tokens[idx].attrIndex('rel');
+    if (relIndex < 0) {
+      tokens[idx].attrPush(['rel', 'noopener']);
+    } else {
+      tokens[idx]['attrs']![relIndex][1] = 'noopener';
+    }
+
     return self.renderToken(tokens, idx, options);
   };
 

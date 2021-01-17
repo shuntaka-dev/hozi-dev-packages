@@ -8,7 +8,7 @@ describe('convertToHoziDevHtml', () => {
       );
 
       expect(html).toEqual(
-        '<p><a href="https://github.com/" target="_blank">see github</a></p>\n',
+        '<p><a href="https://github.com/" target="_blank" rel="noopener">see github</a></p>\n',
       );
     });
   });
