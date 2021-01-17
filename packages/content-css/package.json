@@ -19,6 +19,7 @@
     "access": "public"
   },
   "devDependencies": {
+    "lighthouse": "^7.0.0",
     "node-sass": "5.0.0"
   }
 }
