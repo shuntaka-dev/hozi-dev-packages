@@ -26,6 +26,7 @@ ls -al
       );
     });
   });
+
   describe('img', () => {
     describe('normal', () => {
       test('Return HTML', () => {
@@ -34,11 +35,11 @@ ls -al
         );
 
         expect(html).toEqual(
-          `<p><img src="https://gyazo.com/f4d63480f0146b89c8824b57dd146b9f" alt="img"></p>
-`,
+          '<p><img src="https://gyazo.com/f4d63480f0146b89c8824b57dd146b9f" alt="img"></p>\n',
         );
       });
     });
+
     describe('specified size', () => {
       test('Return HTML', () => {
         const html = HoziDevMarkToHtml.convertToHoziDevHtml(
@@ -46,8 +47,7 @@ ls -al
         );
 
         expect(html).toEqual(
-          `<p><img src="https://gyazo.com/f4d63480f0146b89c8824b57dd146b9f" alt="img" width="200" height="300"></p>
-`,
+          '<p><img src="https://gyazo.com/f4d63480f0146b89c8824b57dd146b9f" alt="img" width="200" height="300"></p>\n',
         );
       });
     });
