@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.0.3](https://github.com/hozi-dev/hozi-dev-packages/compare/@hozi-dev/markdown-to-html@0.0.2...@hozi-dev/markdown-to-html@0.0.3) (2021-01-17)
+
+
+### Bug Fixes
+
+* target=_blankのとき、rel=noopenerを付与する ([8ec00af](https://github.com/hozi-dev/hozi-dev-packages/commit/8ec00afff762cd2afb2c4e8d6c3d3721fcf7b18d))
+
+
+
+
+
 ## [0.0.2](https://github.com/hozi-dev/hozi-dev-packages/compare/@hozi-dev/markdown-to-html@0.0.1...@hozi-dev/markdown-to-html@0.0.2) (2021-01-17)
 
 
