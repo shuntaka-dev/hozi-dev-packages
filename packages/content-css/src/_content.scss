@@ -5,7 +5,10 @@
   color: #333;
   a {
     word-break: break-all;
-    color: #50ab00;
+    color: #5C6EB1;
+  }
+  a:hover {
+    color: #6686FF;
   }
   a:visited {
     word-break: break-all;
@@ -36,7 +39,7 @@
     font-size: 1.7em;
     position: relative;
     // border-bottom: solid 4px $c-primary-bg
-    border-left:solid 4px $c-primary-bg;
+    border-left:solid 4px $c-primary-char;
     padding-left: 10px;
   }
 
@@ -58,7 +61,7 @@
     left: 0;
     bottom: -2px;
     width: 20%;
-    border-bottom: 2px solid $c-primary-bg;
+    border-bottom: 2px solid $c-primary-char;
   }
 
   h3 {
@@ -123,36 +126,29 @@
 
   blockquote{
       position:relative;
-      border-left:3px solid $c-primary-bg;
+      border-left:3px solid $c-primary-char;
       padding-left:10px;
-  }
-  blockquote:before{
-      position:absolute;
-      font-family:'FontAwesome';
-      content:'\f10d';
-      font-size: 20px;
-      color: $c-primary-bg;
   }
   blockquote p{
       position:relative;
-      padding-left:30px;
+      padding-left: 16px;
   }
   blockquote cite{
       display: block;
       font-size:0.8rem;
-      color: $c-primary-bg;
+      color: $c-primary-char;
       text-align:right;
   }
 
   code:not([class]) {
     padding: 0.0em 0.4em;
-    color: #e01e5a;
+    color: #AE2B2D;
     border: 1px solid #00000024;
     border-radius: 3px;
   }
 
   th {
-    background-color: $c-primary-bg;
+    background-color: $c-primary-char;
     color: #FFF;
     border: 1px solid #000;
     padding: 5px;

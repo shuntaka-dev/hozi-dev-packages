@@ -14,7 +14,9 @@ $breakpoints: (
   }
 }
 
-$c-primary-bg: #6E9050;
+$c-primary-bg: #F7FAFC;
+$c-primary-char: #525457;
+$c-secondary-char: #686767;
 
 @import "./_code-block.scss";
 @import "./_content.scss";
