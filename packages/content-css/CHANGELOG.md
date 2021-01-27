@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.1.2](https://github.com/hozi-dev/hozi-dev-packages/compare/@hozi-dev/content-css@0.1.1...@hozi-dev/content-css@0.1.2) (2021-01-27)
+
+
+### Bug Fixes
+
+* fix color for li element ([05a493d](https://github.com/hozi-dev/hozi-dev-packages/commit/05a493dc398216e454040cb25199d1be5f75537c))
+
+
+
+
+
 ## [0.1.1](https://github.com/hozi-dev/hozi-dev-packages/compare/@hozi-dev/content-css@0.1.0...@hozi-dev/content-css@0.1.1) (2021-01-26)
 
 
