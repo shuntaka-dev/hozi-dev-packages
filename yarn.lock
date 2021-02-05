@@ -6155,6 +6155,11 @@ markdown-it-br@1.0.0:
   resolved "https://registry.yarnpkg.com/markdown-it-br/-/markdown-it-br-1.0.0.tgz#a9e9e953846da45c8977cac0a63b5b58fc6d595d"
   integrity sha1-qenpU4RtpFyJd8rApjtbWPxtWV0=
 
+markdown-it-image-lazy-loading@^1.0.2:
+  version "1.0.2"
+  resolved "https://registry.yarnpkg.com/markdown-it-image-lazy-loading/-/markdown-it-image-lazy-loading-1.0.2.tgz#fbacba9818a9657286295b2a9a15ec722b27d550"
+  integrity sha512-FBGKcF+zDSE7HEN9rGar6+36RtO3ozakqNLpbl2uL91DZQEIkXxN8uUZXJGCjvQL4O5f9IxeP5lagxX3FZ2SgA==
+
 markdown-it-imsize@2.0.1:
   version "2.0.1"
   resolved "https://registry.yarnpkg.com/markdown-it-imsize/-/markdown-it-imsize-2.0.1.tgz#cca0427905d05338a247cb9ca9d968c5cddd5170"

@@ -2,6 +2,7 @@ import MarkdownIt from 'markdown-it';
 import MarkdownItBr from 'markdown-it-br';
 import MarkdownItImsize from 'markdown-it-imsize';
 import MarkdownItAnchor from 'markdown-it-anchor';
+import MarkdownItImageLazyLoading from 'markdown-it-image-lazy-loading';
 import Token from 'markdown-it/lib/token';
 import Renderer from 'markdown-it/lib/renderer';
 import Prismjs from 'prismjs';
@@ -21,6 +22,7 @@ const convertToHtml = (markdown: string): string => {
   })
     .use(MarkdownItBr)
     .use(MarkdownItImsize)
+    .use(MarkdownItImageLazyLoading)
     .use(MarkdownItAnchor, {
       level: [1, 2, 3],
       permalink: true,

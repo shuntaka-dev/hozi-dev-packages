@@ -9,3 +9,4 @@ declare module 'prismjs/components/prism-ruby';
 declare module 'markdown-it-br';
 declare module 'markdown-it-imsize';
 declare module 'markdown-it-anchor';
+declare module 'markdown-it-image-lazy-loading';
