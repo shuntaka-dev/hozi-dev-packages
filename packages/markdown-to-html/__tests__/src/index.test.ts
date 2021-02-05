@@ -35,7 +35,7 @@ ls -al
         );
 
         expect(html).toEqual(
-          '<p><img src="https://gyazo.com/f4d63480f0146b89c8824b57dd146b9f" alt="img"></p>\n',
+          '<p><img src="https://gyazo.com/f4d63480f0146b89c8824b57dd146b9f" alt="img" loading="lazy"></p>\n',
         );
       });
     });
@@ -47,7 +47,7 @@ ls -al
         );
 
         expect(html).toEqual(
-          '<p><img src="https://gyazo.com/f4d63480f0146b89c8824b57dd146b9f" alt="img" width="200" height="300"></p>\n',
+          '<p><img src="https://gyazo.com/f4d63480f0146b89c8824b57dd146b9f" alt="img" width="200" height="300" loading="lazy"></p>\n',
         );
       });
     });
