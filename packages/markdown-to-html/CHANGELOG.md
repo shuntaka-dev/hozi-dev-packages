@@ -3,6 +3,22 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.1.0](https://github.com/hozi-dev/hozi-dev-packages/compare/@hozi-dev/markdown-to-html@0.0.3...@hozi-dev/markdown-to-html@0.1.0) (2021-02-05)
+
+
+### Bug Fixes
+
+* 画像がはみ出ないようにcssで調整 ([a9f7474](https://github.com/hozi-dev/hozi-dev-packages/commit/a9f74741eb08a3f262d7e282fc0992ff43b874ba))
+
+
+### Features
+
+* imgタグにlazy loadを付与 ([ac0b3e8](https://github.com/hozi-dev/hozi-dev-packages/commit/ac0b3e80d6b490cb51be2414c971fb23b0ea8f5e))
+
+
+
+
+
 ## [0.0.3](https://github.com/hozi-dev/hozi-dev-packages/compare/@hozi-dev/markdown-to-html@0.0.2...@hozi-dev/markdown-to-html@0.0.3) (2021-01-17)
 
 
