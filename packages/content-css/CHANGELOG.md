@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.1.4](https://github.com/hozi-dev/hozi-dev-packages/compare/@hozi-dev/content-css@0.1.3...@hozi-dev/content-css@0.1.4) (2021-02-06)
+
+
+### Bug Fixes
+
+* 画像を中央に表示するように ([b4d6bc2](https://github.com/hozi-dev/hozi-dev-packages/commit/b4d6bc201039e12712e902f16c3ab961666fd16d))
+
+
+
+
+
 ## [0.1.3](https://github.com/hozi-dev/hozi-dev-packages/compare/@hozi-dev/content-css@0.1.2...@hozi-dev/content-css@0.1.3) (2021-02-05)
 
 
