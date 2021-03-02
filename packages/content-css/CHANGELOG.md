@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.1.5](https://github.com/hozi-dev/hozi-dev-packages/compare/@hozi-dev/content-css@0.1.4...@hozi-dev/content-css@0.1.5) (2021-03-02)
+
+
+### Bug Fixes
+
+* tableがはみ出ないように修正 ([4cac309](https://github.com/hozi-dev/hozi-dev-packages/commit/4cac30964cb88a3f5a9781593cba4cc3f0482988))
+
+
+
+
+
 ## [0.1.4](https://github.com/hozi-dev/hozi-dev-packages/compare/@hozi-dev/content-css@0.1.3...@hozi-dev/content-css@0.1.4) (2021-02-06)
 
 
