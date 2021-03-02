@@ -146,6 +146,13 @@
     border-radius: 3px;
   }
 
+  table {
+    display: block;
+    overflow-x: scroll;
+    white-space: nowrap;
+    -webkit-overflow-scrolling: touch;
+  }
+
   th {
     background-color: $c-primary-char;
     color: #FFF;
