@@ -24,8 +24,11 @@ const convertToHtml = (markdown: string): string => {
     .use(MarkdownItImsize)
     .use(MarkdownItImageLazyLoading)
     .use(MarkdownItAnchor, {
-      level: [1, 2, 3],
+      level: [1, 2, 3, 4],
       permalink: true,
+      permalinkBefore: true,
+      permalinkSymbol: '',
+      permalinkClass: 'anchor-link',
     });
   md.options.highlight = (str: string, lang: string): string => {
     const prismLang = ((): Prismjs.Grammar => {

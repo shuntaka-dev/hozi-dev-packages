@@ -27,6 +27,16 @@ ls -al
     });
   });
 
+  describe('ancher', () => {
+    test('Return HTML', () => {
+      const html = HoziDevMarkToHtml.convertToHoziDevHtml('# aaaa');
+
+      expect(html).toEqual(
+        `<h1 id="aaaa"><a class="anchor-link" href="#aaaa" rel="noopener"></a> aaaa</h1>\n`,
+      );
+    });
+  });
+
   describe('img', () => {
     describe('normal', () => {
       test('Return HTML', () => {
