@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.1.6](https://github.com/hozi-dev/hozi-dev-packages/compare/@hozi-dev/content-css@0.1.5...@hozi-dev/content-css@0.1.6) (2021-03-12)
+
+
+### Bug Fixes
+
+* テーブルで下にスクロールバーが出てしまう問題を修正 ([ca9bcc6](https://github.com/hozi-dev/hozi-dev-packages/commit/ca9bcc63655b3b7f13866fdf39881f1b190c1f58))
+
+
+
+
+
 ## [0.1.5](https://github.com/hozi-dev/hozi-dev-packages/compare/@hozi-dev/content-css@0.1.4...@hozi-dev/content-css@0.1.5) (2021-03-02)
 
 
