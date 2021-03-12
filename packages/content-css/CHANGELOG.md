@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.1.8](https://github.com/hozi-dev/hozi-dev-packages/compare/@hozi-dev/content-css@0.1.7...@hozi-dev/content-css@0.1.8) (2021-03-12)
+
+
+### Bug Fixes
+
+* anchorマークで遷移しない問題を解消 ([a622b5d](https://github.com/hozi-dev/hozi-dev-packages/commit/a622b5db49527dfae1197c85083981d9c709d259))
+
+
+
+
+
 ## [0.1.7](https://github.com/hozi-dev/hozi-dev-packages/compare/@hozi-dev/content-css@0.1.6...@hozi-dev/content-css@0.1.7) (2021-03-12)
 
 
