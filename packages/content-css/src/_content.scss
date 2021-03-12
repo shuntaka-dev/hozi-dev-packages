@@ -17,14 +17,22 @@
 
   h1,
   h2,
-  h3 {
-    .header-anchor,
-    .header-anchor:visited {
-      color: #FFF;
-      background-color: #FFF;
+  h3,
+  h4 {
+    &:before {
+     position: absolute;
+     top: .2em;
+     left: -30px;
+     content: '';
+     display: block;
+     width: 20px;
+     height: 20px;
+     background: url(/images/icons/anchor-link.svg) no-repeat 50%;
+     background-size: contain;
+     opacity: 0;
     }
-    .header-anchor:hover {
-      color:#50ab00;
+    &:hover:before {
+     opacity: 1;
     }
   }
 
