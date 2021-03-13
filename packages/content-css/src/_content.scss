@@ -19,6 +19,9 @@
   h2,
   h3,
   h4 {
+    &:hover .anchor-link {
+      opacity: 1;
+    }
     .anchor-link {
       position: absolute;
       top: .2em;
@@ -30,21 +33,6 @@
       background: url(/images/icons/anchor-link.svg) no-repeat 50%;
       background-size: contain;
       opacity: 0;
-    }
-    &:before {
-      position: absolute;
-      top: .2em;
-      left: -30px;
-      content: '';
-      display: block;
-      width: 20px;
-      height: 20px;
-      background: url(/images/icons/anchor-link.svg) no-repeat 50%;
-      background-size: contain;
-      opacity: 0;
-    }
-    &:hover:before {
-     opacity: 1;
     }
   }
 
