@@ -1,5 +1,6 @@
 declare module 'prismjs/components/';
 declare module 'prismjs/components/prism-bash';
+declare module 'prismjs/components/prism-vim';
 declare module 'prismjs/components/prism-typescript';
 declare module 'prismjs/components/prism-go';
 declare module 'prismjs/components/prism-json';

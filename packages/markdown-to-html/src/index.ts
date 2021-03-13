@@ -8,6 +8,7 @@ import Renderer from 'markdown-it/lib/renderer';
 import Prismjs from 'prismjs';
 import loadLanguages from 'prismjs/components/';
 import 'prismjs/components/prism-bash';
+import 'prismjs/components/prism-vim';
 import 'prismjs/components/prism-typescript';
 import 'prismjs/components/prism-go';
 import 'prismjs/components/prism-json';
