@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.1.9](https://github.com/hozi-dev/hozi-dev-packages/compare/@hozi-dev/content-css@0.1.8...@hozi-dev/content-css@0.1.9) (2021-03-13)
+
+
+### Bug Fixes
+
+* シークレットモードでカーソル合わせると毎回svgのfetchが走る問題と冗長な書き方を修正 ([606921e](https://github.com/hozi-dev/hozi-dev-packages/commit/606921e38cddf8b4b7dd833f530a2f4a8652859f))
+
+
+
+
+
 ## [0.1.8](https://github.com/hozi-dev/hozi-dev-packages/compare/@hozi-dev/content-css@0.1.7...@hozi-dev/content-css@0.1.8) (2021-03-12)
 
 
