@@ -1,18 +1,18 @@
 .hozi-dev-article-content {
-  background: #FFF;
+  background: var(--bg-color);
   border-radius: 15px;
   padding: 0px 16px 16px;
-  color: #333;
+  color: var(--text-color);
   a {
     word-break: break-all;
-    color: #5C6EB1;
+    color: var(--tag-a-color);
   }
   a:hover {
-    color: #6686FF;
+    color: var(--tag-a-hover-color);
   }
   a:visited {
     word-break: break-all;
-    color: #6200ac;
+    color: var(--tag-a-visted-color);
   }
 
   h1,
@@ -46,7 +46,7 @@
     margin-bottom: 1.1rem;
     font-size: 1.7em;
     position: relative;
-    border-left:solid 4px $c-primary-char;
+    border-left:solid 4px var(--tag-h1-border-line-color);
     padding-left: 10px;
   }
 
@@ -54,7 +54,7 @@
     margin-top: 1.0em;
     margin-bottom: 0.5em;
     font-size: 1.5em;
-    border-bottom: solid 2px #C4C4C4;
+    border-bottom: solid 2px var(--tag-h2-border-line-color);
     position: relative;
     padding-bottom: 0.4em;
   }
@@ -68,7 +68,7 @@
     left: 0;
     bottom: -2px;
     width: 20%;
-    border-bottom: 2px solid $c-primary-char;
+    border-bottom: 2px solid var(--tag-h2-border-line-after-color);
   }
 
   h3 {
@@ -116,11 +116,10 @@
     margin-top: 10px;
     padding-left: 1.5em;
     list-style-type: disc;
-    color: #333;
   }
 
   ul li::marker {
-    color: $c-primary-char;
+    color: var(--text-color);
   }
 
   // ul > *:last-child {
@@ -133,7 +132,7 @@
 
   blockquote{
       position:relative;
-      border-left:3px solid $c-primary-char;
+      border-left:3px solid var(--text-color);
       padding-left:10px;
   }
   blockquote p{
@@ -143,13 +142,13 @@
   blockquote cite{
       display: block;
       font-size:0.8rem;
-      color: $c-primary-char;
+      color: var(--tag-blockquote-color);
       text-align:right;
   }
 
   code:not([class]) {
     padding: 0.0em 0.4em;
-    color: #AE2B2D;
+    color: var(--tag-code-color);
     border: 1px solid #00000024;
     border-radius: 3px;
   }
@@ -167,15 +166,15 @@
   }
 
   th {
-    background-color: $c-primary-char;
+    background-color: var(--tag-th-color);
     color: #FFF;
-    border: 1px solid #000;
+    border: 1px solid var(--bg-color);
     padding: 5px;
   }
 
   td {
-    background-color: #FFF;
-    border: 1px solid #000;
+    background-color: var(--tag-td-color);
+    border: 1px solid var(--tag-td-border-color);
     padding: 10px;
   }
 
