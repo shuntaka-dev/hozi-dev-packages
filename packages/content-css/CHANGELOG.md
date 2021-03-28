@@ -3,6 +3,22 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.2.0](https://github.com/hozi-dev/hozi-dev-packages/compare/@hozi-dev/content-css@0.1.9...@hozi-dev/content-css@0.2.0) (2021-03-28)
+
+
+### Bug Fixes
+
+* css variablesに置き換え ([e200ed6](https://github.com/hozi-dev/hozi-dev-packages/commit/e200ed6e59f42a1c3b2b621bbbba05f4488c2e3e))
+
+
+### Features
+
+* ダークモードを試験的に実装 ([274d792](https://github.com/hozi-dev/hozi-dev-packages/commit/274d792889c8f2e3eaf311206d614e7969ba8ea1))
+
+
+
+
+
 ## [0.1.9](https://github.com/hozi-dev/hozi-dev-packages/compare/@hozi-dev/content-css@0.1.8...@hozi-dev/content-css@0.1.9) (2021-03-13)
 
 
