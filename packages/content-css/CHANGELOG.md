@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.2.4](https://github.com/hozi-dev/hozi-dev-packages/compare/@hozi-dev/content-css@0.2.3...@hozi-dev/content-css@0.2.4) (2021-04-03)
+
+
+### Bug Fixes
+
+* アンカーリンクのジャンプ位置を調整 ([6e9e4ef](https://github.com/hozi-dev/hozi-dev-packages/commit/6e9e4ef52ab8b87ce9964e3a2b90b454999c0589))
+
+
+
+
+
 ## [0.2.3](https://github.com/hozi-dev/hozi-dev-packages/compare/@hozi-dev/content-css@0.2.2...@hozi-dev/content-css@0.2.3) (2021-04-03)
 
 
