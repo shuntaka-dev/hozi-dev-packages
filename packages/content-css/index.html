@@ -12,115 +12,478 @@
   }
   </style>
 <body>
-  <div class="hozi-dev-article-content-dark">
-    <h1 id="hozi-dev-content-css">hozi-dev-content-css <a class="header-anchor" href="#hozi-dev-content-css">¶</a> </h1>
-    <p>class名には、.hozi-dev-article-contentを利用する</p>
-    <h2 id="コードブロック">コードブロック <a class="header-anchor" href="#コードブロック">¶</a> </h2>
-    <h2 id="リンク付き要素2"><a href="#コードブロック">リンク付き要素2</a> <a class="header-anchor" href="#コードブロック">¶</a> </h2>
-    <h2 id="preview-asciidoc.nvim"><a href="https://github.com/shuntaka9576/preview-asciidoc.nvim" target="_blank">preview-asciidoc.nvim</a> <a class="header-anchor" href="#preview-asciidoc.nvim">¶</a></h2>
-    <p>class名には、.hozi-dev-code-blockを利用する</p>
-    <pre class="hozi-dev-code-block"><code class="language-typescript"><span class="token keyword">export</span> <span class="token keyword">const</span> getStaticProps<span class="token operator">:</span> <span class="token function-variable function">GetStaticProps</span> <span class="token operator">=</span> <span class="token keyword">async</span> <span class="token punctuation">(</span><span class="token punctuation">{</span> params <span class="token punctuation">}</span><span class="token punctuation">)</span> <span class="token operator">=&gt;</span> <span class="token punctuation">{</span>
-  <span class="token keyword">const</span> res <span class="token operator">=</span> <span class="token keyword">await</span> <span class="token function">fetch</span><span class="token punctuation">(</span>
-    <span class="token template-string"><span class="token template-punctuation string">`</span><span class="token interpolation"><span class="token interpolation-punctuation punctuation">${</span>process<span class="token punctuation">.</span>env<span class="token punctuation">.</span><span class="token constant">NEXT_PUBLIC_API_ENDOPOINT</span><span class="token interpolation-punctuation punctuation">}</span></span><span class="token string">/article/</span><span class="token interpolation"><span class="token interpolation-punctuation punctuation">${</span>params<span class="token punctuation">.</span>articleId<span class="token interpolation-punctuation punctuation">}</span></span><span class="token template-punctuation string">`</span></span><span class="token punctuation">,</span>
-  <span class="token punctuation">)</span><span class="token punctuation">;</span>
+<div class="BaseLayout_base__26-69">
+  <div class="BaseLayout_pageBodyWrapper__3H9-r">
+    <div>
+      <div class="ArticleHeader_header__2_RgJ">
+        <div class="ArticleHeader_title__1VmKp">Next.jsとサーバレスAPIで自分のブログを作った話</div>
+        <div class="ArticleHeader_articleInfo__3wYlV">
+          <div class="ArticleHeader_articleShareButton__3F2qY"></div>
+          <div class="ArticleHeader_articleTime__2nIzc">
+            <p>03/08 08:52 2021</p>
+            <p>03/08 08:52 2021</p>
+          </div>
+        </div>
+      </div>
+      <div class="ArticleIdPage_articleBody__3jiUZ">
+        <div class="ArticleIdPage_article__Vr6fW">
+          <div class="ArticleThumbnailAndHtml_articleThumbnailAndHtml__H51Vo">
+            <div class="hozi-dev-article-content">
+              <div class="hozi-dev-article-content-dark" style="visibility: visible;">
+                <h1 id="%E3%81%AF%E3%81%98%E3%82%81%E3%81%AB"><a class="anchor-link" href="#%E3%81%AF%E3%81%98%E3%82%81%E3%81%AB" rel="noopener"></a> はじめに</h1>
+                <p>昨年2020年の年末から個人のブログを定期的に改善しており、ある程度快適なアウトプット環境ができたので紹介する。</p>
+                <p>ざっくり書くと、データストアにDynamoDBを利用して、サーバレスAPIをAWS上に、Next.jsアプリをVercel上でホスティングしている。サーバレスAPIは貧者の技術で、開発環境/本番環境を作って休日中ずっと開発してても大体月3ドルくらいですんだ。</p>
+                <p>Next.jsでブログ作ってみました記事は、だいたいNext.jsアプリと同じリポジトリにマークダウンをコミットしてSSGするようなのばかりで、記事更新のたびにデプロイが必要...。Next.jsとVercelを使うなら、ISR使ってみたいし、独自的な機能をブログに付けたいこともあり、サーバサイドはREST APIにしつつ、コストを抑えるためサーバレス構成にした。</p>
+                <p>それなりに需要があるんじゃないかという目論見と、自分の備忘のためシステム構成を記事にすることにした。</p>
+                <h1 id="%E8%A6%81%E4%BB%B6"><a class="anchor-link" href="#%E8%A6%81%E4%BB%B6" rel="noopener"></a> 要件</h1>
+                <p>主に下記の機能を実現している。それぞれ詳しく解説できないので、気になる機能があったら気軽に<a href="https://github.com/hozi-dev/article/issues" target="_blank" rel="noopener">こちら</a>でissueとして起票してほしい。</p>
+                <ul>
+                  <li>認証</li>
+                  <li>マークダウンを使った記事の記述</li>
+                  <li>OGP画像の自動生成</li>
+                  <li>サムネイルの設定</li>
+                  <li>GitHubのリポジトリにpushしたら、記事更新可能</li>
+                  <li>サイトから認証を経て、リポジトリ連携設定可能</li>
+                  <li>サイトから認証を経て、リポジトリ連携解除可能</li>
+                  <li>個人以外でもユーザー登録したら、普通に使える</li>
+                </ul>
+                <h1 id="%E6%A7%8B%E6%88%90%E6%A6%82%E8%A6%81"><a class="anchor-link" href="#%E6%A7%8B%E6%88%90%E6%A6%82%E8%A6%81" rel="noopener"></a> 構成概要</h1>
+                <p>利用しているサービスは下記の図の通り。</p>
+                <p><img src="https://res.cloudinary.com/dkerzyk09/image/upload/v1615111924/blog/01ezsr2jdx19bg00pgwt1rnsk6/hqdqjtntcjed43d0nnjp.webp" alt="構成" loading="lazy"></p>
+                <h1 id="%E3%83%95%E3%83%AD%E3%83%B3%E3%83%88%E3%82%A8%E3%83%B3%E3%83%89"><a class="anchor-link" href="#%E3%83%95%E3%83%AD%E3%83%B3%E3%83%88%E3%82%A8%E3%83%B3%E3%83%89" rel="noopener"></a> フロントエンド</h1>
+                <h2 id="%E3%83%9A%E3%83%BC%E3%82%B8%E5%85%A8%E4%BD%93%E6%A7%8B%E6%88%90"><a class="anchor-link" href="#%E3%83%9A%E3%83%BC%E3%82%B8%E5%85%A8%E4%BD%93%E6%A7%8B%E6%88%90" rel="noopener"></a> ページ全体構成</h2>
+                <p>フロントエンドはNext.js。ホスティングにVercelを利用。ページ構成は下記。</p>
+                <table>
+                  <thead>
+                    <tr>
+                      <th>ページ名</th>
+                      <th>パス</th>
+                      <th>認証</th>
+                      <th>API fetch</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr>
+                      <td>loginページ</td>
+                      <td>/login</td>
+                      <td></td>
+                      <td></td>
+                    </tr>
+                    <tr>
+                      <td>トップページ</td>
+                      <td>/</td>
+                      <td></td>
+                      <td>ISR</td>
+                    </tr>
+                    <tr>
+                      <td>記事詳細ページ</td>
+                      <td>/[userName]/articles/[slug]</td>
+                      <td></td>
+                      <td>ISR</td>
+                    </tr>
+                    <tr>
+                      <td>ダッシュボードページ</td>
+                      <td>/dashbord</td>
+                      <td>◯</td>
+                      <td>CSR</td>
+                    </tr>
+                    <tr>
+                      <td>GitHub Appsコールバックページ</td>
+                      <td>/github/app/callback</td>
+                      <td>◯</td>
+                      <td>CSR</td>
+                    </tr>
+                  </tbody>
+                </table>
+                <h2 id="%E3%83%88%E3%83%83%E3%83%97%E3%83%9A%E3%83%BC%E3%82%B8"><a class="anchor-link" href="#%E3%83%88%E3%83%83%E3%83%97%E3%83%9A%E3%83%BC%E3%82%B8" rel="noopener"></a> トップページ</h2>
+                <p><img src="https://res.cloudinary.com/dkerzyk09/image/upload/v1615082644/blog/01ezsr2jdx19bg00pgwt1rnsk6/vontcifux30p4hlitkpj.webp" alt="トップページ" loading="lazy"><br> バックエンドの記事一覧取得APIをVercelサーバサイドサイドでfetchして、ISRで配信している。</p>
+                <p>デザインは定番の1〜3カラムカード表示で、レスポンシブ対応している。サムネイルを設定しないとOGP用に自動生成された画像が表示される。画像はカードのタイトルと被っているので正直微妙。テンプレートが設定できたり、Zennみたいに絵文字が設定できるように改善したいなーと感じている。</p>
+                <h2 id="%E8%A8%98%E4%BA%8B%E8%A9%B3%E7%B4%B0%E3%83%9A%E3%83%BC%E3%82%B8"><a class="anchor-link" href="#%E8%A8%98%E4%BA%8B%E8%A9%B3%E7%B4%B0%E3%83%9A%E3%83%BC%E3%82%B8" rel="noopener"></a> 記事詳細ページ</h2>
+                <p><img src="https://res.cloudinary.com/dkerzyk09/image/upload/v1615083192/blog/01ezsr2jdx19bg00pgwt1rnsk6/uspkfahiltj22mbzqzid.webp" alt="記事詳細ページ" loading="lazy"></p>
+                <p>トップページ同様、Vercelサーバサイドでfetchして、ISRで配信している。</p>
+                <p><a href="https://github.com/zenn-dev/zenn-editor" target="_blank" rel="noopener">zenn-dev/zenn-editor</a>のやり方を参考に、詳細ページで利用するマークダウンパーサーとCSSを<a href="https://github.com/hozi-dev/hozi-dev-packages" target="_blank" rel="noopener">hozi-dev/hozi-dev-packages</a>にまとめた。</p>
+                <p>lernaを使ったモノレポ構成で管理している。課題は、npmにpublishしないとパッケージを使う側と結合テスト出来ない点。モノレポにしなければnpmの場合、雑にリポジトリ名とブランチ名指定でパッケージインストール可能なので、悩みどころ。</p>
+                <p>lerna関連では、過去に記事を書いたのでこちらも参考にすると良いかもしれない。</p>
+                <ul>
+                  <li><a href="https://blog.hozi.dev/hozi576/articles/01ev3p1knggn1wwsg0n0e98915" target="_blank" rel="noopener">lernaでモノレポで管理したパッケージをnpmに公開する際の注意点</a></li>
+                  <li><a href="https://blog.hozi.dev/hozi576/articles/01evbw029qzxavp20erstgvm5r" target="_blank" rel="noopener">npmモジュールをモノレポで管理し、煩雑なリリース業務を効率化する</a></li>
+                </ul>
+                <h2 id="%E3%83%80%E3%83%83%E3%82%B7%E3%83%A5%E3%83%9C%E3%83%BC%E3%83%89%E3%83%9A%E3%83%BC%E3%82%B8"><a class="anchor-link" href="#%E3%83%80%E3%83%83%E3%82%B7%E3%83%A5%E3%83%9C%E3%83%BC%E3%83%89%E3%83%9A%E3%83%BC%E3%82%B8" rel="noopener"></a> ダッシュボードページ</h2>
+                <p>管理ページで、著者しかみれないページなので、実質ユーザーには縁のないページ。(Firebas Authenticationでサインアップすれば同じことができるようにはしています)</p>
+                <p>リポジトリの連携、連携解除設定するのに利用。ログインからリポジトリ連携、解除は下記のgifのような流れとなる。(ボタンを押したのか分かり辛かったり、デザインやっつけですが...)</p>
+                <p><img src="https://res.cloudinary.com/dkerzyk09/image/upload/v1615084489/blog/01ezsr2jdx19bg00pgwt1rnsk6/zbeonycrwk2ntm9zvgtp.gif" alt="dashbord" loading="lazy"></p>
+                <p>ダッシュボードページでは、ユーザー情報を取得したり、連携しているリポジトリの情報を取得するAPIをクライアントサイドでfetchしています。</p>
+                <h1 id="%E6%B4%BB%E7%94%A8%E3%81%97%E3%81%A6%E3%81%84%E3%82%8B%E4%B8%BB%E3%81%AAsaas"><a class="anchor-link" href="#%E6%B4%BB%E7%94%A8%E3%81%97%E3%81%A6%E3%81%84%E3%82%8B%E4%B8%BB%E3%81%AAsaas" rel="noopener"></a> 活用している主なSaaS</h1>
+                <p>活用しているSassに関して簡単に紹介する</p>
+                <h2 id="firebase-authentication"><a class="anchor-link" href="#firebase-authentication" rel="noopener"></a> Firebase Authentication</h2>
+                <p>IDaaS。認証で利用。React Contextでユーザー情報やidTokenを各ページで取得して、認証が必要なAPIを叩いている。Firebaseはライブラリがしっかりしていて、IDaaSとしてうまく処理が隠蔽されているなと感じた。</p>
+                <h2 id="cloudinary"><a class="anchor-link" href="#cloudinary" rel="noopener"></a> Cloudinary</h2>
+                <p>画像処理SaaS。OGPタイトル埋め込みで自動生成する際には、定番(?)なサービス。下記ような形で、予め台紙となる画像をCloudinaryに保存しておけば、パスパラメータを使ってタイトルを埋め込める。</p>
+                <p><a href="https://res.cloudinary.com/dkerzyk09/image/upload/s--d5U3lE5_--/c_fit,co_rgb:525457,l_text:notesansjpmid.otf_48_bold:GitHub%E3%81%A8%E3%81%AE%E9%80%A3%E6%90%BA%E6%89%8B%E6%AE%B5(OAuth%20Apps%252C%20GitHub%20Apps)%E3%82%92%E6%95%B4%E7%90%86%E3%81%99%E3%82%8B,w_600/v1/blog/og/ogp.webp" target="_blank" rel="noopener">https://res.cloudinary.com/dkerzyk09/image/upload/s--d5U3lE5_--/c_fit,co_rgb:525457,l_text:notesansjpmid.otf_48_bold:GitHubとの連携手段(OAuth Apps%252C GitHub Apps)を整理する,w_600/v1/blog/og/ogp.webp</a></p>
+                <p>URLに着目してもらえるとわかる通り、<code>s--d5U3lE5_--</code>のような文字列がついておりこちらが署名になっている。パスパラーメーターの内容に対して署名付きURLが発行されているので、任意のユーザーに画像変換を悪用されない。</p>
+                <p>署名つきURLの発行は、後述するサーバレスAPI側のLambdaで発行している。Lambda側で署名付きURLを発行している処理は下記のような感じ。</p>
+                <pre class="hozi-dev-code-block"><code class="language-ts"><span class="token keyword">import</span> <span class="token operator">*</span> <span class="token keyword">as</span> Cloudinary <span class="token keyword">from</span> <span class="token string">'cloudinary'</span><span class="token punctuation">;</span>
 
-  <span class="token keyword">const</span> article <span class="token operator">=</span> <span class="token punctuation">(</span><span class="token keyword">await</span> res<span class="token punctuation">.</span><span class="token function">json</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token keyword">as</span> ArticleType<span class="token punctuation">;</span>
-  <span class="token operator">...</span>
+<span class="token keyword">export</span> <span class="token keyword">const</span> createSetedTitleSiginedUrl <span class="token operator">=</span> <span class="token punctuation">(</span>
+  publicId<span class="token operator">:</span> <span class="token builtin">string</span><span class="token punctuation">,</span>
+  title<span class="token operator">:</span> <span class="token builtin">string</span><span class="token punctuation">,</span>
+  ext<span class="token operator">:</span> <span class="token builtin">string</span><span class="token punctuation">,</span>
+<span class="token punctuation">)</span><span class="token operator">:</span> <span class="token builtin">string</span> <span class="token operator">=&gt;</span> <span class="token punctuation">{</span>
+  Cloudinary<span class="token punctuation">.</span>v2<span class="token punctuation">.</span><span class="token function">config</span><span class="token punctuation">(</span><span class="token punctuation">{</span>
+    cloud_name<span class="token operator">:</span> <span class="token constant">CLOUD_NAME</span><span class="token punctuation">,</span>
+    api_key<span class="token operator">:</span> <span class="token constant">API_KEY</span><span class="token punctuation">,</span>
+    api_secret<span class="token operator">:</span> <span class="token constant">API_SECRET</span><span class="token punctuation">,</span> <span class="token comment">// KMS等のキーマネージャー側に保存するのが良い</span>
+  <span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+  <span class="token keyword">const</span> siginedUrl <span class="token operator">=</span> Cloudinary<span class="token punctuation">.</span>v2<span class="token punctuation">.</span><span class="token function">url</span><span class="token punctuation">(</span><span class="token template-string"><span class="token template-punctuation string">`</span><span class="token interpolation"><span class="token interpolation-punctuation punctuation">${</span>publicId<span class="token interpolation-punctuation punctuation">}</span></span><span class="token string">.</span><span class="token interpolation"><span class="token interpolation-punctuation punctuation">${</span>ext<span class="token interpolation-punctuation punctuation">}</span></span><span class="token template-punctuation string">`</span></span><span class="token punctuation">,</span> <span class="token punctuation">{</span>
+    sign_url<span class="token operator">:</span> <span class="token boolean">true</span><span class="token punctuation">,</span>
+    secure<span class="token operator">:</span> <span class="token boolean">true</span><span class="token punctuation">,</span>
+    <span class="token keyword">type</span><span class="token operator">:</span> <span class="token string">'upload'</span><span class="token punctuation">,</span>
+    transformation<span class="token operator">:</span> <span class="token punctuation">{</span>
+      secure<span class="token operator">:</span> <span class="token boolean">true</span><span class="token punctuation">,</span>
+      sign_url<span class="token operator">:</span> <span class="token boolean">true</span><span class="token punctuation">,</span> <span class="token comment">// 署名付きにする</span>
+      transformation<span class="token operator">:</span> <span class="token punctuation">[</span>
+        <span class="token punctuation">{</span>
+          overlay<span class="token operator">:</span> <span class="token punctuation">{</span>
+            font_family<span class="token operator">:</span> <span class="token string">'notesansjpmid.otf'</span><span class="token punctuation">,</span> <span class="token comment">// フォントを指定</span>
+            font_size<span class="token operator">:</span> <span class="token number">48</span><span class="token punctuation">,</span>
+            font_weight<span class="token operator">:</span> <span class="token string">'bold'</span><span class="token punctuation">,</span>
+            text<span class="token operator">:</span> title<span class="token punctuation">,</span> <span class="token comment">// 画像に設定する文字列を指定</span>
+          <span class="token punctuation">}</span><span class="token punctuation">,</span>
+          color<span class="token operator">:</span> <span class="token string">'#525457'</span><span class="token punctuation">,</span>
+          width<span class="token operator">:</span> <span class="token number">600</span><span class="token punctuation">,</span>
+          crop<span class="token operator">:</span> <span class="token string">'fit'</span><span class="token punctuation">,</span>
+        <span class="token punctuation">}</span><span class="token punctuation">,</span>
+      <span class="token punctuation">]</span><span class="token punctuation">,</span>
+    <span class="token punctuation">}</span><span class="token punctuation">,</span>
+  <span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+  <span class="token keyword">return</span> siginedUrl<span class="token punctuation">;</span>
+<span class="token punctuation">}</span><span class="token punctuation">;</span>
 </code></pre>
-    <h2 id="箇条書き">箇条書き</h2>
-    <ul>
-      <li>入れ子</li>
-      <ul>
-        <li>入れ子</li>
-        <li>入れ子</li>
-      </ul>
-      <li>入れ子</li>
-      <li>入れ子</li>
-    </ul>
-    <ul>
-      <li><a href="https://blog.cybozu.io/entry/2020/04/21/080000" target="_blank">LernaとYarn WorkspacesでMonorepo管理</a></li>
-      <li><a href="https://qiita.com/acro5piano/items/c2a8dd3a75c99b704548" target="_blank">Yarn workspaces から Lerna に移行した</a></li>
-    </ul>
-    <h2 id="引用">引用 <a class="header-anchor" href="#引用">¶</a> </h2>
-    <blockquote>
-      <p>Vercel is a cloud platform for static sites and Serverless Functions that fits perfectly with your workflow. It enables developers to host Jamstack websites and web services that deploy instantly, scale automatically, and requires no supervision, all with no configuration.</p>
-    </blockquote>
-    <h2 id="バッククォートで囲う">バッククォートで囲う場合 <a class="header-anchor" href="#バッククォートで囲う場合">¶</a> </h2>
-    <p><code>const a = 24</code>を定義する
-      <p>
-        <h2 id="テーブル">テーブル <a class="header-anchor" href="#テーブル">¶</a> </h2>
-        <h1 id="aaaa"><a class="anchor-link" href="#aaaa" rel="noopener"></a>aaaaaaaaa</h1>
-        <table>
-          <thead>
-            <tr>
-              <th>カテゴリ</th>
-              <th>ファミリー</th>
-              <th>ユースケース</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr>
-              <td>汎用</td>
-              <td>A1, T3, T3a</td>
-              <td>開発環境,web,マイクロサービス</td>
-            </tr>
-            <tr>
-              <td>ストレージ 最適化</td>
-              <td>H1</td>
-              <td>BigData処理、分散型ファ イルシステム</td>
-            </tr>
-          </tbody>
-        </table>
-        <table>
-          <thead>
-            <tr>
-              <th>項</th>
-              <th>登場する概念</th>
-              <th>説明</th>
-              <th>例</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr>
-              <td>1</td>
-              <td>GitHub Apps ID</td>
-              <td>GitHub Appsに一意なID(開発者のコンソールではApp IDという表記です)</td>
-              <td></td>
-            </tr>
-            <tr>
-              <td>2</td>
-              <td>GitHub Appsの秘密鍵</td>
-              <td>GitHub Appsに登録した秘密鍵</td>
-              <td>-----BEGIN RSA PRIVATE KEY-----...(省略)</td>
-            </tr>
-            <tr>
-              <td>3</td>
-              <td>installation_id</td>
-              <td>GitHub Appsをインストールした組織またはユーザーに割り当てられるID ※1</td>
-              <td></td>
-            </tr>
-            <tr>
-              <td>4</td>
-              <td>JWTトークン</td>
-              <td>GitHub Apspの情報を取得ためのトークン<br>1,2,3を利用して作成されたトークン</td>
-              <td>eyJ..(省略)</td>
-            </tr>
-            <tr>
-              <td>5</td>
-              <td>アクセストークン</td>
-              <td>GitHub Appsをインストールしたユーザーリソースにアクセスするためのトークン<br>4と/app/installtions/${installtion_id}/access_tokenエンドポイントを用いて作成されたトークン</td>
-              <td></td>
-            </tr>
-          </tbody>
-        </table>
-        <h3 id="%E5%A4%B1%E6%95%97%E4%BE%8B">失敗例 <a class="header-anchor" href="#%E5%A4%B1%E6%95%97%E4%BE%8B">¶</a></h3>
-        <ol>
-          <li>gitのHEADがrelase済みかチェック(release済みの場合リリース済みとして正常終了)</li>
-          <li>リリースバージョンをインタラクティブに選択</li>
-          <li>publishするパッケージを選択</li>
-          <li><code>2.</code>のバージョンで<code>git tag</code>と<code>git push --tags</code>が実行される</li>
-          <li>npmへpublish</li>
-        </ol>
-        <h2>画像</h2> <img src="https://res.cloudinary.com/dkerzyk09/image/upload/c_scale,w_448/v1612536012/blog/01etqfnfw9h98gffzbqsv4r32w/iqoo5-pro.webp" alt="iQoo 5 Pro"> <img src="./IMG_0374.JPG" alt="iQoo 5 Pro" width="900"> </div>
+                <h3 id="github-apps"><a class="anchor-link" href="#github-apps" rel="noopener"></a> GitHub Apps</h3>
+                <p>リポジトリに記事をpushしたら、記事が格納されているDynamoDBを更新している。その仕組み実現するために、GiHub Appsを活用している。GitHub Appsはエンドユーザーがインストール時にGitHub Appsに対して認可(権限とその権限が使えるリポジトリ)を与えること出来る。その認可を使ってGitHub Appsは様々なサービスを提供可能。本ブログでは例えば下記のことをGitHub Appsで行っている。</p>
+                <ul>
+                  <li>リポジトリpush時にこちらの設定したサーバーにwebhookしてもらう(このwebhookを契機にDBを更新)</li>
+                  <li>認可のあるリポジトリを参照</li>
+                </ul>
+                <h1 id="%E3%83%90%E3%83%83%E3%82%AF%E3%82%A8%E3%83%B3%E3%83%89"><a class="anchor-link" href="#%E3%83%90%E3%83%83%E3%82%AF%E3%82%A8%E3%83%B3%E3%83%89" rel="noopener"></a> バックエンド</h1>
+                <h2 id="api%E8%AA%8D%E8%A8%BC"><a class="anchor-link" href="#api%E8%AA%8D%E8%A8%BC" rel="noopener"></a> API認証</h2>
+                <p>前述の通りIDaasには、<code>Firebase Authentication</code>を採用。API認証に、Lambdaオーソライザを利用している。</p>
+                <p>IDトークンの検証に成功したら成功ポリシー、失敗したら失敗ポリシーを返す。成功ポリシーが返却されれば後続のLambdaが実行され、失敗ポリシーの場合は401 Unauthorizedを返す。</p>
+                <p>検証しているコードはこんな感じ。ライブラリ優秀。</p>
+                <pre class="hozi-dev-code-block"><code class="language-ts"><span class="token keyword">import</span> <span class="token operator">*</span> <span class="token keyword">as</span> FirebaseAdmin <span class="token keyword">from</span> <span class="token string">'firebase-admin'</span><span class="token punctuation">;</span>
+
+<span class="token comment">// (中略)</span>
+
+<span class="token keyword">export</span> <span class="token keyword">const</span> verifyToken <span class="token operator">=</span> <span class="token keyword">async</span> <span class="token punctuation">(</span>
+  idToken<span class="token operator">:</span> <span class="token builtin">string</span><span class="token punctuation">,</span>
+<span class="token punctuation">)</span><span class="token operator">:</span> <span class="token builtin">Promise</span><span class="token operator">&lt;</span>FirebaseAdmin<span class="token punctuation">.</span>auth<span class="token punctuation">.</span>DecodedIdToken<span class="token operator">&gt;</span> <span class="token operator">=&gt;</span> <span class="token punctuation">{</span>
+  <span class="token keyword">try</span> <span class="token punctuation">{</span>
+    <span class="token keyword">const</span> decodeToken <span class="token operator">=</span> <span class="token keyword">await</span> FirebaseAdmin<span class="token punctuation">.</span><span class="token function">auth</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">verifyIdToken</span><span class="token punctuation">(</span>idToken<span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+    <span class="token keyword">return</span> decodeToken<span class="token punctuation">;</span>
+  <span class="token punctuation">}</span> <span class="token keyword">catch</span> <span class="token punctuation">(</span>e<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token keyword">if</span> <span class="token punctuation">(</span>e<span class="token punctuation">.</span>code <span class="token operator">===</span> <span class="token string">'auth/id-token-expired'</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+      <span class="token keyword">throw</span> <span class="token keyword">new</span> <span class="token class-name">FireBaseIdTokneExpiredError</span><span class="token punctuation">(</span>idToken<span class="token punctuation">,</span> e<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+
+    <span class="token keyword">throw</span> <span class="token keyword">new</span> <span class="token class-name">FireBaseUnknownError</span><span class="token punctuation">(</span>idToken<span class="token punctuation">,</span> e<span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token punctuation">}</span>
+<span class="token punctuation">}</span><span class="token punctuation">;</span>
+</code></pre>
+                <h2 id="%E8%A8%98%E4%BA%8B%E4%B8%80%E8%A6%A7%E5%8F%96%E5%BE%97"><a class="anchor-link" href="#%E8%A8%98%E4%BA%8B%E4%B8%80%E8%A6%A7%E5%8F%96%E5%BE%97" rel="noopener"></a> 記事一覧取得</h2>
+                <p>トップページで記事一覧を取得する際に実行されるAPI。Lambdaから記事テーブルに問い合わせて記事の一覧を取得する。</p>
+                <p>記事テーブル定義は下記。</p>
+                <table>
+                  <thead>
+                    <tr>
+                      <th>属性名</th>
+                      <th>型</th>
+                      <th>必須</th>
+                      <th>説明</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr>
+                      <td>userId(PK)</td>
+                      <td>string</td>
+                      <td>◯</td>
+                      <td>Firebase AuthenticationのUID</td>
+                    </tr>
+                    <tr>
+                      <td>articleId(SK)</td>
+                      <td>string</td>
+                      <td>◯</td>
+                      <td>slug的なやつ。userIdがPKなので、被りは気にしなくていい</td>
+                    </tr>
+                    <tr>
+                      <td>content</td>
+                      <td>string</td>
+                      <td>◯</td>
+                      <td>記事内容</td>
+                    </tr>
+                    <tr>
+                      <td>title</td>
+                      <td>string</td>
+                      <td>◯</td>
+                      <td>タイトル</td>
+                    </tr>
+                    <tr>
+                      <td>type</td>
+                      <td>string</td>
+                      <td>◯</td>
+                      <td>記事のタイプ(技術とかポエムとか)</td>
+                    </tr>
+                    <tr>
+                      <td>(beta)category</td>
+                      <td>Array</td>
+                      <td>◯</td>
+                      <td></td>
+                    </tr>
+                    <tr>
+                      <td>createAt</td>
+                      <td>number</td>
+                      <td>◯</td>
+                      <td>作成日時</td>
+                    </tr>
+                    <tr>
+                      <td>updateAt</td>
+                      <td>number</td>
+                      <td>◯</td>
+                      <td>更新日時</td>
+                    </tr>
+                    <tr>
+                      <td>publishAt</td>
+                      <td>string</td>
+                      <td></td>
+                      <td>公開日時.公開-&gt;非公開にしても消し込まれない</td>
+                    </tr>
+                    <tr>
+                      <td>thumnail</td>
+                      <td>string</td>
+                      <td></td>
+                      <td>記事のサムネイル</td>
+                    </tr>
+                    <tr>
+                      <td>typePublishAt</td>
+                      <td>string</td>
+                      <td></td>
+                      <td>type-publishAtをつなげた値.非公開にすると消し込まれる</td>
+                    </tr>
+                  </tbody>
+                </table>
+                <p>userId(SK) typePublishAt(SK)のGSIを作成している。typePublishAtは、{記事のタイプ}-{公開タイムスタンプ}形式。故にuserIdと記事タイプをbegins_withで指定してDyanmoDBに対してクエリすれば、指定した記事タイプの一覧がソート済(公開日時順)で取得できる。ページネーションも可能。問い合わせているコードは下記。</p>
+                <pre class="hozi-dev-code-block"><code class="language-ts"><span class="token keyword">export</span> <span class="token keyword">const</span> getArticleListByUserIdAndType <span class="token operator">=</span> <span class="token keyword">async</span> <span class="token punctuation">(</span>
+  userId<span class="token operator">:</span> <span class="token builtin">string</span><span class="token punctuation">,</span>
+  <span class="token keyword">type</span><span class="token operator">:</span> ArticleType<span class="token punctuation">,</span>          <span class="token comment">// 記事タイプを指定</span>
+  scanIndexForward<span class="token operator">?</span><span class="token operator">:</span> <span class="token builtin">boolean</span><span class="token punctuation">,</span> <span class="token comment">// 降順,昇順を指定</span>
+<span class="token punctuation">)</span><span class="token operator">:</span> <span class="token builtin">Promise</span><span class="token operator">&lt;</span>ArticleUserIdTypePublishAtIndexTableItem<span class="token punctuation">[</span><span class="token punctuation">]</span><span class="token operator">&gt;</span> <span class="token operator">=&gt;</span> <span class="token punctuation">{</span>
+  <span class="token keyword">const</span> params<span class="token operator">:</span> DynamoDB<span class="token punctuation">.</span>DocumentClient<span class="token punctuation">.</span>QueryInput <span class="token operator">=</span> <span class="token punctuation">{</span>
+    TableName<span class="token operator">:</span> <span class="token constant">ARTICLE_TABLE_NAME</span><span class="token punctuation">,</span>
+    IndexName<span class="token operator">:</span> <span class="token string">'userIdTypePublishAtIndex'</span><span class="token punctuation">,</span>
+    KeyConditionExpression<span class="token operator">:</span>
+      <span class="token string">'userId = :userId AND begins_with(typePublishAt, :type)'</span><span class="token punctuation">,</span>
+    ExpressionAttributeValues<span class="token operator">:</span> <span class="token punctuation">{</span>
+      <span class="token string">':userId'</span><span class="token operator">:</span> userId<span class="token punctuation">,</span>
+      <span class="token string">':type'</span><span class="token operator">:</span> <span class="token template-string"><span class="token template-punctuation string">`</span><span class="token interpolation"><span class="token interpolation-punctuation punctuation">${</span><span class="token keyword">type</span><span class="token interpolation-punctuation punctuation">}</span></span><span class="token string">-</span><span class="token template-punctuation string">`</span></span><span class="token punctuation">,</span>
+    <span class="token punctuation">}</span><span class="token punctuation">,</span>
+    ScanIndexForward<span class="token operator">:</span> scanIndexForward <span class="token operator">??</span> <span class="token boolean">true</span><span class="token punctuation">,</span>
+  <span class="token punctuation">}</span><span class="token punctuation">;</span>
+
+  <span class="token keyword">const</span> response <span class="token operator">=</span> <span class="token keyword">await</span> dynamodbDocumentClient<span class="token punctuation">.</span><span class="token function">query</span><span class="token punctuation">(</span>params<span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">promise</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+  <span class="token keyword">if</span> <span class="token punctuation">(</span><span class="token operator">!</span>response<span class="token punctuation">.</span>Items<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token keyword">return</span> <span class="token punctuation">[</span><span class="token punctuation">]</span><span class="token punctuation">;</span>
+  <span class="token punctuation">}</span>
+
+  <span class="token keyword">return</span> response<span class="token punctuation">.</span>Items<span class="token punctuation">.</span><span class="token function">map</span><span class="token punctuation">(</span><span class="token punctuation">(</span>item<span class="token punctuation">)</span> <span class="token operator">=&gt;</span> <span class="token punctuation">{</span>
+    <span class="token keyword">const</span> artcleTableItem<span class="token operator">:</span> ArticleUserIdTypePublishAtIndexTableItem <span class="token operator">=</span> <span class="token punctuation">{</span>
+      userId<span class="token operator">:</span> item<span class="token punctuation">.</span>userId<span class="token punctuation">,</span>
+      articleId<span class="token operator">:</span> item<span class="token punctuation">.</span>articleId<span class="token punctuation">,</span>
+      content<span class="token operator">:</span> item<span class="token punctuation">.</span>content<span class="token punctuation">,</span>
+      title<span class="token operator">:</span> item<span class="token punctuation">.</span>title<span class="token punctuation">,</span>
+      <span class="token keyword">type</span><span class="token operator">:</span> item<span class="token punctuation">.</span><span class="token keyword">type</span><span class="token punctuation">,</span>
+      updateAt<span class="token operator">:</span> item<span class="token punctuation">.</span>updateAt<span class="token punctuation">,</span>
+      createAt<span class="token operator">:</span> item<span class="token punctuation">.</span>createAt<span class="token punctuation">,</span>
+      category<span class="token operator">:</span> item<span class="token punctuation">.</span>category<span class="token punctuation">,</span>
+      description<span class="token operator">:</span> item<span class="token punctuation">.</span>description<span class="token punctuation">,</span>
+      typePublishAt<span class="token operator">:</span> item<span class="token punctuation">.</span>typePublishAt<span class="token punctuation">,</span>
+    <span class="token punctuation">}</span><span class="token punctuation">;</span>
+
+    <span class="token keyword">if</span> <span class="token punctuation">(</span>item<span class="token punctuation">.</span>thumbnail<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+      artcleTableItem<span class="token punctuation">.</span>thumbnail <span class="token operator">=</span> item<span class="token punctuation">.</span>thumbnail<span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+
+    <span class="token keyword">return</span> artcleTableItem<span class="token punctuation">;</span>
+  <span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span><span class="token punctuation">;</span>
+</code></pre>
+                <h2 id="%E8%A8%98%E4%BA%8B%E5%8D%98%E4%BD%93%E5%8F%96%E5%BE%97"><a class="anchor-link" href="#%E8%A8%98%E4%BA%8B%E5%8D%98%E4%BD%93%E5%8F%96%E5%BE%97" rel="noopener"></a> 記事単体取得</h2>
+                <p>前述したuserIdとarticleIdで記事単体を取得する。マークダウンのHTMLパースはLamba側で実行してフロントはHTMLをレンダリングするだけにしている。</p>
+                <h2 id="github-webhook%E5%8F%97%E3%81%91%E5%8F%96%E3%82%8A"><a class="anchor-link" href="#github-webhook%E5%8F%97%E3%81%91%E5%8F%96%E3%82%8A" rel="noopener"></a> GitHub Webhook受け取り</h2>
+                <p>ZennのようなGitHub連携機能を付けたくて実装した。GitHub Appsをインストールしたリポジトリにpushすると、APIGatewayを通して本Lambdaが実行される。ロジックは別途記事を書く予定。</p>
+                <p>GitHub Appsとはなんぞや？という方は、以前投稿した<a href="https://blog.hozi.dev/hozi576/articles/01ezm5k2rt1jm6zbsewm33r0xw" target="_blank" rel="noopener">GitHubとの連携手段(OAuth Apps, GitHub Apps)を整理する</a>を参考にする良いかも。</p>
+                <h2 id="%E3%83%A6%E3%83%BC%E3%82%B6%E3%83%BC%E6%83%85%E5%A0%B1%E5%8F%96%E5%BE%97"><a class="anchor-link" href="#%E3%83%A6%E3%83%BC%E3%82%B6%E3%83%BC%E6%83%85%E5%A0%B1%E5%8F%96%E5%BE%97" rel="noopener"></a> ユーザー情報取得</h2>
+                <p>Firebase AuthenticationのUIDに紐づけた情報を取得するAPI。Lambdaからユーザーテーブルに問い合わせ取得した内容を返却する。<br> ユーザーテーブル定義は下記。</p>
+                <table>
+                  <thead>
+                    <tr>
+                      <th>属性名</th>
+                      <th>型</th>
+                      <th>必須</th>
+                      <th>説明</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr>
+                      <td>userId(PK)</td>
+                      <td>string</td>
+                      <td>◯</td>
+                      <td>Firebase AuthenticationのUID</td>
+                    </tr>
+                    <tr>
+                      <td>field(SK)</td>
+                      <td>string</td>
+                      <td>◯</td>
+                      <td>userIdに関する属性名</td>
+                    </tr>
+                    <tr>
+                      <td>value</td>
+                      <td>string</td>
+                      <td>◯</td>
+                      <td>fieldに対する値</td>
+                    </tr>
+                  </tbody>
+                </table>
+                <p><a href="https://www.slideshare.net/slideshow/embed_code/key/q6PyeWlr3O8iPF?startSlide=33" target="_blank" rel="noopener">GSI OVERLOADING</a>を参考にした。filed(PK) value(SK)のGSIを貼っている。例えばageという属性があった場合、field=age, value=24でクエリすれば24歳のuserId一覧を取得出来る。</p>
+                <p>下記の値でFirebase AuthenticationのUIDを 引く or 逆引き する用途で利用。</p>
+                <ul>
+                  <li>ブログに一意なユーザーID</li>
+                  <li>GitHub AppsのinstallationId</li>
+                </ul>
+                <p>GSI OVERLOADINGは1つのGSIであらゆる属性からユーザーIDを<strong>逆引き</strong>出来るのが強みで採用している。</p>
+                <h2 id="github-apps%E3%82%A4%E3%83%B3%E3%82%B9%E3%83%88%E3%83%BC%E3%83%AB"><a class="anchor-link" href="#github-apps%E3%82%A4%E3%83%B3%E3%82%B9%E3%83%88%E3%83%BC%E3%83%AB" rel="noopener"></a> GitHub Appsインストール</h2>
+                <p><a href="https://blog.hozi.dev/hozi576/articles/01ezm5k2rt1jm6zbsewm33r0xw#%E3%83%95%E3%83%AD%E3%83%BC-1" target="_blank" rel="noopener">GitHub Appsのインストールのフロー</a>のバックエンドの部分の処理を担う。<br> 主な処理は下記。</p>
+                <ul>
+                  <li>前述のユーザーテーブルにinstalltionIdとFirebase AuthenticationのUIDを紐づけて保存する</li>
+                </ul>
+                <p>不特定多数がGitHub Appsをインストールする場合は、インストール後のバリデーションに本エンドポイントを利用すると良いと感じた。具体的には、ユーザーが設定したGitHub Appsのインストール設定のバリデーションをして、違反ならアンインストールのエンドポイントを叩き、4XXコードを返却。連携に失敗しましたページを表示して、設定ミスをユーザーに伝える。</p>
+                <h2 id="github-apps%E3%82%A2%E3%83%B3%E3%82%A4%E3%83%B3%E3%82%B9%E3%83%88%E3%83%BC%E3%83%AB"><a class="anchor-link" href="#github-apps%E3%82%A2%E3%83%B3%E3%82%A4%E3%83%B3%E3%82%B9%E3%83%88%E3%83%BC%E3%83%AB" rel="noopener"></a> GitHub Appsアンインストール</h2>
+                <p>主な処理は下記。</p>
+                <ul>
+                  <li>ユーザーテーブルのinstalltionIdとFirebase AuthenticationのUIDを紐づけを削除</li>
+                  <li>GitHub Appsのアンイストールエンドポイントを叩く(DELETE /app/installations/{installation_id})</li>
+                </ul>
+                <h1 id="%E3%83%97%E3%83%AC%E3%83%93%E3%83%A5%E3%83%BC%E7%92%B0%E5%A2%83"><a class="anchor-link" href="#%E3%83%97%E3%83%AC%E3%83%93%E3%83%A5%E3%83%BC%E7%92%B0%E5%A2%83" rel="noopener"></a> プレビュー環境</h1>
+                <p>ローカルでリアルタイムでプレビュー可能なNeovimのプラグインを作った。マークダウンパーサーとCSSをライブラリ化しているので実装は簡単。<br> <img src="https://res.cloudinary.com/dkerzyk09/image/upload/v1615089687/blog/01ezsr2jdx19bg00pgwt1rnsk6/ttpskowmt8t41u79dwbo.gif" alt="Neovimプレビュー" loading="lazy"></p>
+                <p>リポジトリは<a href="https://github.com/hozi-dev/preview-hozi-dev.nvim" target="_blank" rel="noopener">hozi-dev/preview-hozi-dev.nvim</a>。本プラグインでもNext.jsをラップしている。</p>
+                <p>追加本プラグインに下記の機能をつけると、捗りそう。</p>
+                <ul>
+                  <li>Cloudinaryに画像をアップロードする機能</li>
+                  <li>movをgifに変換する可能</li>
+                  <li>自動スクロール</li>
+                </ul>
+                <p>仕組みは過去記事を参考に。</p>
+                <ul>
+                  <li><a href="https://qiita.com/hozi894/items/d9b296f923b2d394a26f" target="_blank" rel="noopener">NeovimでSwaggerをリアルタイムプレビューするプラグインを作った話</a></li>
+                </ul>
+                <h1 id="%E6%96%99%E9%87%91"><a class="anchor-link" href="#%E6%96%99%E9%87%91" rel="noopener"></a> 料金</h1>
+                <p>最後に2021年2月のAWS費用を記載しておく。環境は開発と本番の2つがあります。</p>
+                <table>
+                  <thead>
+                    <tr>
+                      <th>サービス</th>
+                      <th>料金($)</th>
+                      <th>補足</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr>
+                      <td>DynamoDB</td>
+                      <td>3.21</td>
+                      <td>DBは2つで2環境の合計4つ<br>プロビジョニングされたキャパシティモードでデフォルト値<br>(オンデマンドにしたらもっと安い)</td>
+                    </tr>
+                    <tr>
+                      <td>API Gateway</td>
+                      <td>0.07</td>
+                      <td></td>
+                    </tr>
+                    <tr>
+                      <td>Route53</td>
+                      <td>0.55</td>
+                      <td>ホストゾーン1つ(hozi.dev)に対して$0.5</td>
+                    </tr>
+                    <tr>
+                      <td>Lambda</td>
+                      <td>0.00</td>
+                      <td></td>
+                    </tr>
+                    <tr>
+                      <td>合計</td>
+                      <td>3.83</td>
+                      <td></td>
+                    </tr>
+                  </tbody>
+                </table>
+                <p>従量課金のサービスを多く活用しているので、ほぼ誰も見ていない現環境では対してお金はかからない(血涙)。VercelはHobby Planで、その他SaasSは無料枠で収まっているため、実質AWSにかかっている金額がブログの運用費用となる。リクエスト数やLambda実行回数を載せないと大した参考にならない気がするので、別で記事化することにする。あくまで参考程度に。</p>
+                <h1 id="%E6%9C%80%E5%BE%8C%E3%81%AB"><a class="anchor-link" href="#%E6%9C%80%E5%BE%8C%E3%81%AB" rel="noopener"></a> 最後に</h1>
+                <p>ざっくりでしたが、以上が本ブログの構成。SaaSを組み合わせることで、比較的に簡単に任意のユーザーがマークダウンで投稿可能なブログが作れる時代なんだなーと感じた。独自の機能やデザインをしたり、SaaSとの連携をする際にやはり既存静的サイトジェネレータ(HugoやJekyllのこと)だと柔軟にできなかったりする。</p>
+                <p>一方で本ブログのようにサーバサイド、フロントエンドを独自で組むと、認証つきページで様々な検証が可能。サーバレスなので、AWSが死なない限り、気にする必要がないので運用も楽でおすすめです。</p>
+                <p>以上。追加で聞きたいことがあれば、<a href="https://github.com/hozi-dev/article/issues" target="_blank" rel="noopener">こちら</a>でissueとして起票して頂ければと思います。</p>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="ArticleIdPage_rightSideBar__3pOlE">
+          <div class="toc" id="ArticleIdPage_toc__2cBwf">
+            <ol class="ArticleIdPage_listClass__xwxIo ">
+              <li class="ArticleIdPage_listItemClass__qFpAZ"><a href="#%E3%81%AF%E3%81%98%E3%82%81%E3%81%AB" class="toc-link node-name--H1 ">はじめに</a></li>
+              <li class="ArticleIdPage_listItemClass__qFpAZ"><a href="#%E8%A6%81%E4%BB%B6" class="toc-link node-name--H1 ">要件</a></li>
+              <li class="ArticleIdPage_listItemClass__qFpAZ"><a href="#%E6%A7%8B%E6%88%90%E6%A6%82%E8%A6%81" class="toc-link node-name--H1 ">構成概要</a></li>
+              <li class="ArticleIdPage_listItemClass__qFpAZ"><a href="#%E3%83%95%E3%83%AD%E3%83%B3%E3%83%88%E3%82%A8%E3%83%B3%E3%83%89" class="toc-link node-name--H1 ">フロントエンド</a>
+                <ol class="ArticleIdPage_listClass__xwxIo  ArticleIdPage_collapsibleClass__3pEI8 ArticleIdPage_isCollapsedClass__k5Y9H">
+                  <li class="ArticleIdPage_listItemClass__qFpAZ"><a href="#%E3%83%9A%E3%83%BC%E3%82%B8%E5%85%A8%E4%BD%93%E6%A7%8B%E6%88%90" class="toc-link node-name--H2 ">ページ全体構成</a></li>
+                  <li class="ArticleIdPage_listItemClass__qFpAZ"><a href="#%E3%83%88%E3%83%83%E3%83%97%E3%83%9A%E3%83%BC%E3%82%B8" class="toc-link node-name--H2 ">トップページ</a></li>
+                  <li class="ArticleIdPage_listItemClass__qFpAZ"><a href="#%E8%A8%98%E4%BA%8B%E8%A9%B3%E7%B4%B0%E3%83%9A%E3%83%BC%E3%82%B8" class="toc-link node-name--H2 ">記事詳細ページ</a></li>
+                  <li class="ArticleIdPage_listItemClass__qFpAZ"><a href="#%E3%83%80%E3%83%83%E3%82%B7%E3%83%A5%E3%83%9C%E3%83%BC%E3%83%89%E3%83%9A%E3%83%BC%E3%82%B8" class="toc-link node-name--H2 ">ダッシュボードページ</a></li>
+                </ol>
+              </li>
+              <li class="ArticleIdPage_listItemClass__qFpAZ"><a href="#%E6%B4%BB%E7%94%A8%E3%81%97%E3%81%A6%E3%81%84%E3%82%8B%E4%B8%BB%E3%81%AAsaas" class="toc-link node-name--H1 ">活用している主なSaaS</a>
+                <ol class="ArticleIdPage_listClass__xwxIo  ArticleIdPage_collapsibleClass__3pEI8">
+                  <li class="ArticleIdPage_listItemClass__qFpAZ"><a href="#firebase-authentication" class="toc-link node-name--H2 ">Firebase Authentication</a></li>
+                  <li class="ArticleIdPage_listItemClass__qFpAZ is-active-li"><a href="#cloudinary" class="toc-link node-name--H2  ArticleIdPage_isActiveLi__Ev7gM">Cloudinary</a>
+                    <ol class="ArticleIdPage_listClass__xwxIo  ArticleIdPage_collapsibleClass__3pEI8">
+                      <li class="ArticleIdPage_listItemClass__qFpAZ"><a href="#github-apps" class="toc-link node-name--H3 ">GitHub Apps</a></li>
+                    </ol>
+                  </li>
+                </ol>
+              </li>
+              <li class="ArticleIdPage_listItemClass__qFpAZ"><a href="#%E3%83%90%E3%83%83%E3%82%AF%E3%82%A8%E3%83%B3%E3%83%89" class="toc-link node-name--H1 ">バックエンド</a>
+                <ol class="ArticleIdPage_listClass__xwxIo  ArticleIdPage_collapsibleClass__3pEI8 ArticleIdPage_isCollapsedClass__k5Y9H">
+                  <li class="ArticleIdPage_listItemClass__qFpAZ"><a href="#api%E8%AA%8D%E8%A8%BC" class="toc-link node-name--H2 ">API認証</a></li>
+                  <li class="ArticleIdPage_listItemClass__qFpAZ"><a href="#%E8%A8%98%E4%BA%8B%E4%B8%80%E8%A6%A7%E5%8F%96%E5%BE%97" class="toc-link node-name--H2 ">記事一覧取得</a></li>
+                  <li class="ArticleIdPage_listItemClass__qFpAZ"><a href="#%E8%A8%98%E4%BA%8B%E5%8D%98%E4%BD%93%E5%8F%96%E5%BE%97" class="toc-link node-name--H2 ">記事単体取得</a></li>
+                  <li class="ArticleIdPage_listItemClass__qFpAZ"><a href="#github-webhook%E5%8F%97%E3%81%91%E5%8F%96%E3%82%8A" class="toc-link node-name--H2 ">GitHub Webhook受け取り</a></li>
+                  <li class="ArticleIdPage_listItemClass__qFpAZ"><a href="#%E3%83%A6%E3%83%BC%E3%82%B6%E3%83%BC%E6%83%85%E5%A0%B1%E5%8F%96%E5%BE%97" class="toc-link node-name--H2 ">ユーザー情報取得</a></li>
+                  <li class="ArticleIdPage_listItemClass__qFpAZ"><a href="#github-apps%E3%82%A4%E3%83%B3%E3%82%B9%E3%83%88%E3%83%BC%E3%83%AB" class="toc-link node-name--H2 ">GitHub Appsインストール</a></li>
+                  <li class="ArticleIdPage_listItemClass__qFpAZ"><a href="#github-apps%E3%82%A2%E3%83%B3%E3%82%A4%E3%83%B3%E3%82%B9%E3%83%88%E3%83%BC%E3%83%AB" class="toc-link node-name--H2 ">GitHub Appsアンインストール</a></li>
+                </ol>
+              </li>
+              <li class="ArticleIdPage_listItemClass__qFpAZ"><a href="#%E3%83%97%E3%83%AC%E3%83%93%E3%83%A5%E3%83%BC%E7%92%B0%E5%A2%83" class="toc-link node-name--H1 ">プレビュー環境</a></li>
+              <li class="ArticleIdPage_listItemClass__qFpAZ"><a href="#%E6%96%99%E9%87%91" class="toc-link node-name--H1 ">料金</a></li>
+              <li class="ArticleIdPage_listItemClass__qFpAZ"><a href="#%E6%9C%80%E5%BE%8C%E3%81%AB" class="toc-link node-name--H1 ">最後に</a></li>
+            </ol>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="BaseLayout_footer__AxTON">
+    <div class="Footer_footer__1Bazu"><a class="Footer_copyright__3Pdm-" href="/">hozi.dev</a>
+      <p class="Footer_supplement__1UCSt">This site uses Google Analytics.</p>
+    </div>
+  </div>
+</div>
 </body>
 </html>
