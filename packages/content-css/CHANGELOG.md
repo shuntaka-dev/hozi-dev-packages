@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.2.5](https://github.com/hozi-dev/hozi-dev-packages/compare/@hozi-dev/content-css@0.2.4...@hozi-dev/content-css@0.2.5) (2021-04-03)
+
+
+### Bug Fixes
+
+* h1,h2属性を調整 ([175b38a](https://github.com/hozi-dev/hozi-dev-packages/commit/175b38a63b4707e50c6c9435339f831432ab9c7d))
+
+
+
+
+
 ## [0.2.4](https://github.com/hozi-dev/hozi-dev-packages/compare/@hozi-dev/content-css@0.2.3...@hozi-dev/content-css@0.2.4) (2021-04-03)
 
 
