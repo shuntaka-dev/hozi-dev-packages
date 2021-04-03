@@ -22,9 +22,13 @@ hozi-dev-article-content {
     &:not(:first-child):before {
       display: block;
       content: "";
-      margin-top: -240px;
-      height: 240px;
+      margin-top: -60px;
+      height: 60px;
       visibility: hidden;
+      @include mq(md) {
+        margin-top: 0px;
+        height: 0px;
+      }
     }
   }
 
