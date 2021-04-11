@@ -25,7 +25,7 @@ hozi-dev-article-content {
       display: block;
       content: "";
       margin-top: -60px;
-      padding-top: 60px;
+      height: 60px;
       visibility: hidden;
       @include mq(md) {
         margin-top: 0px;
