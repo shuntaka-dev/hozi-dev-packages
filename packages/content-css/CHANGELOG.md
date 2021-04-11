@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.2.6](https://github.com/hozi-dev/hozi-dev-packages/compare/@hozi-dev/content-css@0.2.5...@hozi-dev/content-css@0.2.6) (2021-04-11)
+
+
+### Bug Fixes
+
+* aタグの配色ミス修正 ([61374e2](https://github.com/hozi-dev/hozi-dev-packages/commit/61374e2ee374fe2f0edcec96779cf94b364b7925))
+* ネガティブマージンとリンクが被り押下出来ない問題を解消 Close [#2](https://github.com/hozi-dev/hozi-dev-packages/issues/2) ([aed60e2](https://github.com/hozi-dev/hozi-dev-packages/commit/aed60e2b9afa787a093b1a09cf70f271afd60ded))
+
+
+
+
+
 ## [0.2.5](https://github.com/hozi-dev/hozi-dev-packages/compare/@hozi-dev/content-css@0.2.4...@hozi-dev/content-css@0.2.5) (2021-04-03)
 
 
