@@ -112,11 +112,8 @@ hozi-dev-article-content {
 
   ol {
     list-style-type: decimal;
+    margin-top: 10px;
     padding-left: 1.5em;
-    li {
-      display: list-item;
-      text-align: -webkit-match-parent;
-    }
   }
 
   ul {
@@ -137,20 +134,25 @@ hozi-dev-article-content {
     margin-bottom: 13px;
   }
 
-  blockquote{
-      position:relative;
-      border-left:3px solid var(--text-color);
-      padding-left:10px;
+  ol > li {
+    margin-bottom: 13px;
+  }
+
+  blockquote {
+    position: relative;
+    border-left: 3px solid var(--tag-blockquote-color);
+    margin: 4px;
+    padding-left: 10px;
   }
   blockquote p{
-      position:relative;
-      padding-left: 16px;
+    position: relative;
+    color: var(--tag-blockquote-font-color);
   }
   blockquote cite{
-      display: block;
-      font-size:0.8rem;
-      color: var(--tag-blockquote-color);
-      text-align:right;
+    display: block;
+    font-size: 0.8rem;
+    color: var(--tag-blockquote-color);
+    text-align: right;
   }
 
   code:not([class]) {
@@ -232,6 +234,8 @@ hozi-dev-article-content {
   --tag-blockquote-color: #525457;
   --tag-code-background-color: rgb(27 31 35 / 5%);
   --tag-code-color: #333;
+  --tag-blockquote-color: #ddd;
+  --tag-blockquote-font-color: #777;
 
   @extend hozi-dev-article-content;
 }
@@ -255,6 +259,8 @@ hozi-dev-article-content {
   --tag-blockquote-color: #525457;
   --tag-code-background-color: rgb(69 75 83);
   --tag-code-color: #c9d5e1;
+  --tag-blockquote-color: #c9d5e19e;
+  --tag-blockquote-font-color: #c9d5e19e;
 
   @extend hozi-dev-article-content;
 }
