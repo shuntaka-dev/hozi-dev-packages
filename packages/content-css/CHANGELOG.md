@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.3.1](https://github.com/hozi-dev/hozi-dev-packages/compare/@hozi-dev/content-css@0.3.0...@hozi-dev/content-css@0.3.1) (2021-04-17)
+
+
+### Bug Fixes
+
+* コードブロックのファイル名表示がabusoluteで被ることがあったため修正 ([9c327bc](https://github.com/hozi-dev/hozi-dev-packages/commit/9c327bc2bbd3f254f38d594b40df74f5e17fa6fd))
+
+
+
+
+
 # [0.3.0](https://github.com/hozi-dev/hozi-dev-packages/compare/@hozi-dev/content-css@0.2.7...@hozi-dev/content-css@0.3.0) (2021-04-17)
 
 
