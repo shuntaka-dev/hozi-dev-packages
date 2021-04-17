@@ -1,25 +1,25 @@
 .code-block-container {
-  padding: 4px 0px 0px 0px;
+  padding: 0.2em 0 0 0;
   margin: 1.3rem 0;
   background: #2d2d2d;
   border-radius: 3px;
+  @include mq(sm) {
+    font-size: .9em;
+  }
 }
 
 .code-block-filename {
-  padding: 4px 8px 4px 8px;
+  padding: 0.2em 0.5em 0.2em 0.5em;
   color: #c9d5e1;
   background: #696969;
 }
 
 .hozi-dev-code-block {
   margin: 0;
-  padding: 4px 0px 8px 8px;
+  padding: 0.5em 0 0.5em 0.5em;
   overflow-x: auto;
   white-space: nowrap;
   -webkit-overflow-scrolling: touch;
-  @include mq(sm) {
-    font-size: .9em;
-  }
   // prismajs
   code[class*="language-"],
   pre[class*="language-"] {
