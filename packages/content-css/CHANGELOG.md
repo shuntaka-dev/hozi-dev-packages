@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.3.0](https://github.com/hozi-dev/hozi-dev-packages/compare/@hozi-dev/content-css@0.2.7...@hozi-dev/content-css@0.3.0) (2021-04-17)
+
+
+### Features
+
+* コードブロックにファイル名の表示、折りたたみ機能を追加 ([a94274c](https://github.com/hozi-dev/hozi-dev-packages/commit/a94274c69a00f23a5b72796975381782afb3b8bb))
+* 引用とol属性のデザイン調整 ([3815ca3](https://github.com/hozi-dev/hozi-dev-packages/commit/3815ca3ac7cb8bb592f7bbcee4097b9e2109b884))
+
+
+
+
+
 ## [0.2.7](https://github.com/hozi-dev/hozi-dev-packages/compare/@hozi-dev/content-css@0.2.6...@hozi-dev/content-css@0.2.7) (2021-04-11)
 
 

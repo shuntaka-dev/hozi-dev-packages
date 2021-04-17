@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.2.0](https://github.com/hozi-dev/hozi-dev-packages/compare/@hozi-dev/markdown-to-html@0.1.2...@hozi-dev/markdown-to-html@0.2.0) (2021-04-17)
+
+
+### Features
+
+* コードブロックにファイル名の表示、折りたたみ機能を追加 ([a94274c](https://github.com/hozi-dev/hozi-dev-packages/commit/a94274c69a00f23a5b72796975381782afb3b8bb))
+
+
+
+
+
 ## [0.1.2](https://github.com/hozi-dev/hozi-dev-packages/compare/@hozi-dev/markdown-to-html@0.1.1...@hozi-dev/markdown-to-html@0.1.2) (2021-03-13)
 
 
