@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.3.6](https://github.com/hozi-dev/hozi-dev-packages/compare/@hozi-dev/content-css@0.3.5...@hozi-dev/content-css@0.3.6) (2021-04-17)
+
+
+### Bug Fixes
+
+* モバイルでspanがコードブロックから微妙に突き出ていたため修正 ([d400eb3](https://github.com/hozi-dev/hozi-dev-packages/commit/d400eb3e97996ee0586729164f5c86a1eccad8df))
+
+
+
+
+
 ## [0.3.5](https://github.com/hozi-dev/hozi-dev-packages/compare/@hozi-dev/content-css@0.3.4...@hozi-dev/content-css@0.3.5) (2021-04-17)
 
 
