@@ -1,0 +1,20 @@
+.editor {
+  max-width: 1200px;
+  margin: 0 auto;
+  display: flex;
+  justify-content: space-between;
+}
+
+.content {
+  display: flex;
+  width: calc(100% - 312px);
+}
+
+.rightSideBar {
+  width: 296px;
+  border: 1px solid #CCC;
+}
+
+.colorButton {
+  border: 1px solid #CCC;
+}
