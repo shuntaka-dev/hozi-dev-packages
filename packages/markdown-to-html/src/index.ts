@@ -33,7 +33,7 @@ const convertToHtml = (markdown: string): string => {
         tokens[idx].info = lang; // delete fileName
         const html = fenceDefaultRenderRule(tokens, idx, options, env, self); // render markdown exclude fileName
         if (filename === undefined) {
-          return html;
+          return `<div class="code-block-container">${html}</div>`;
         }
 
         const filenameHtml = `<div class="code-block-filename-container"><span class="code-block-filename">${md.utils.escapeHtml(

@@ -1,17 +1,19 @@
 .code-block-container {
-  padding: 2px 0px 0px 0px;
+  padding: 4px 0px 0px 0px;
+  margin: 1.3rem 0;
   background: #2d2d2d;
   border-radius: 3px;
 }
+
 .code-block-filename {
-  padding: 2px 8px 2px 8px;
+  padding: 4px 8px 4px 8px;
   color: #c9d5e1;
   background: #696969;
 }
 
 .hozi-dev-code-block {
-  margin: 1.3rem 0;
-  padding: 8px 0px 8px 8px;
+  margin: 0px;
+  padding: 4px 0px 8px 8px;
   border-radius: 3px;
   background: #2d2d2d;
   overflow-x: auto;

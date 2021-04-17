@@ -20,9 +20,9 @@ ls -al
 \`\`\``);
 
       expect(html)
-        .toEqual(`<pre class="hozi-dev-code-block"><code class="language-bash"><span class="token function">ls</span> -al
+        .toEqual(`<div class="code-block-container"><pre class="hozi-dev-code-block"><code class="language-bash"><span class="token function">ls</span> -al
 </code></pre>
-`);
+</div>`);
     });
 
     describe('& fileName', () => {
