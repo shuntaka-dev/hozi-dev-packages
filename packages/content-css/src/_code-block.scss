@@ -1,5 +1,4 @@
 .code-block-container {
-  padding: 0.2em 0 0 0;
   margin: 1.3rem 0;
   background: #2d2d2d;
   border-radius: 3px;
@@ -9,6 +8,8 @@
 }
 
 .code-block-filename {
+  display: inline-block;
+  vertical-align: top;
   padding: 0.2em 0.5em 0.2em 0.5em;
   color: #c9d5e1;
   background: #696969;
