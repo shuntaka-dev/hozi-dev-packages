@@ -1,0 +1,50 @@
+$xs: 374px;
+$sm: 576px;
+$md: 768px;
+$lg: 1200px;
+$xl: 1328px;
+
+$breakpoints: (
+  "xs": "screen and (max-width: #{$xs})",
+  "sm": "screen and (max-width: #{$sm})",
+  "md": "screen and (max-width: #{$md})",
+  "lg": "screen and (max-width: #{$lg})",
+  "xl": "screen and (max-width: #{$xl})",
+);
+
+@mixin mq($size) {
+  @media #{map-get($breakpoints, $size)} {
+    @content;
+  }
+}
+
+.base {
+  width: 100%;
+  word-break: break-all;
+}
+
+.editor {
+  max-width: 1200px;
+  margin: 0 auto;
+  // display: flex;
+  // justify-content: space-between;
+  // @include mq(lg) {
+  //   display: 
+  // }
+}
+
+.content {
+  width: calc(100% - 312px);
+  @include mq(lg) {
+    width: 100%;
+    min-width: 100%;
+  }
+}
+
+.rightSideBar {
+  width: 296px;
+  border: 1px solid #CCC;
+  @include mq(lg) {
+    display: none;
+  }
+}
