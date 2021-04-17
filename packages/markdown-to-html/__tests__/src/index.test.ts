@@ -19,11 +19,23 @@ describe('convertToHoziDevHtml', () => {
 ls -al
 \`\`\``);
 
-      expect(html).toEqual(
-        `<pre class="hozi-dev-code-block"><code class="language-bash"><span class="token function">ls</span> -al
+      expect(html)
+        .toEqual(`<pre class="hozi-dev-code-block"><code class="language-bash"><span class="token function">ls</span> -al
 </code></pre>
-`,
-      );
+`);
+    });
+
+    describe('& fileName', () => {
+      test('Return HTML', () => {
+        const html = HoziDevMarkToHtml.convertToHoziDevHtml(`\`\`\`bash: test.sh
+ls -al
+\`\`\``);
+
+        expect(html)
+          .toEqual(`<div class="code-block-container"><div class="code-block-filename-container"><span class="code-block-filename"> test.sh</span></div><pre class="hozi-dev-code-block"><code class="language-bash"><span class="token function">ls</span> -al
+</code></pre>
+</div>`);
+      });
     });
   });
 
@@ -58,6 +70,20 @@ ls -al
 
         expect(html).toEqual(
           '<p><img src="https://gyazo.com/f4d63480f0146b89c8824b57dd146b9f" alt="img" width="200" height="300" loading="lazy"></p>\n',
+        );
+      });
+    });
+  });
+
+  describe('summary', () => {
+    describe('simple case', () => {
+      test('Return HTML', () => {
+        const html = HoziDevMarkToHtml.convertToHoziDevHtml(
+          '::: details sourceCode\nhere be dragons\n:::',
+        );
+
+        expect(html).toEqual(
+          '<details><summary>sourceCode</summary><div class="details-content"><p>here be dragons</p>\n</div></details>\n',
         );
       });
     });
