@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.3.2](https://github.com/hozi-dev/hozi-dev-packages/compare/@hozi-dev/content-css@0.3.1...@hozi-dev/content-css@0.3.2) (2021-04-17)
+
+
+### Bug Fixes
+
+* コードブロックが続いた場合の間隔を調節 ([c96f933](https://github.com/hozi-dev/hozi-dev-packages/commit/c96f9337cb6c24af501f742416e5f71844cb0adc))
+
+
+
+
+
 ## [0.3.1](https://github.com/hozi-dev/hozi-dev-packages/compare/@hozi-dev/content-css@0.3.0...@hozi-dev/content-css@0.3.1) (2021-04-17)
 
 
