@@ -88,4 +88,17 @@ ls -al
       });
     });
   });
+
+  describe('embeded', () => {
+    describe('codepen', () => {
+      const html = HoziDevMarkToHtml.convertToHoziDevHtml(
+        '@[codepen](https://codepen.io/shuntaka9576/embed/QWdBzbX)',
+      );
+
+      expect(html).toEqual(
+        `<div class="block-embed block-embed-service-codepen"><iframe type="text/html" src="https://codepen.io/shuntaka9576/embed/QWdBzbX" frameborder="0" width="100%" height="300" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe></div>
+`,
+      );
+    });
+  });
 });

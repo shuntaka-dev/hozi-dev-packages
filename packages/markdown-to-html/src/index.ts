@@ -4,6 +4,7 @@ import MarkdownItImsize from 'markdown-it-imsize';
 import MarkdownItAnchor from 'markdown-it-anchor';
 import MarkdownItImageLazyLoading from 'markdown-it-image-lazy-loading';
 import MarkdownItContainer from 'markdown-it-container';
+import MarkdownItPlayground from 'markdown-it-playground';
 import Token from 'markdown-it/lib/token';
 import Renderer from 'markdown-it/lib/renderer';
 import Prismjs from 'prismjs';
@@ -27,8 +28,9 @@ const convertToHtml = (markdown: string): string => {
     .use(MarkdownItImsize)
     .use(MarkdownItImageLazyLoading)
     .use((md) => {
+      // costom ``` rule
       const fenceDefaultRenderRule = md.renderer.rules.fence!; // TODO delete non-null assertion
-      md.renderer.rules.fence = function (tokens, idx, options, env, self) {
+      md.renderer.rules.fence = (tokens, idx, options, env, self) => {
         const [lang, filename] = tokens[idx].info.split(/:/); // tokens.info => "bash: test.sh"
         tokens[idx].info = lang; // delete fileName
         const html = fenceDefaultRenderRule(tokens, idx, options, env, self); // render markdown exclude fileName
@@ -43,6 +45,7 @@ const convertToHtml = (markdown: string): string => {
         return `<div class="code-block-container">${filenameHtml}${html}</div>`;
       };
     })
+    .use(MarkdownItPlayground)
     .use(MarkdownItContainer, 'details', {
       validate: (params: string) => {
         return params.trim().match(/^details\s+(.*)$/);

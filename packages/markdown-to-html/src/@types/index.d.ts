@@ -11,3 +11,4 @@ declare module 'markdown-it-br';
 declare module 'markdown-it-imsize';
 declare module 'markdown-it-anchor';
 declare module 'markdown-it-image-lazy-loading';
+declare module 'markdown-it-playground';
