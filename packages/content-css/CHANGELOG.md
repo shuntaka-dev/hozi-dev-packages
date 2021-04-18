@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.4.0](https://github.com/hozi-dev/hozi-dev-packages/compare/@hozi-dev/content-css@0.3.6...@hozi-dev/content-css@0.4.0) (2021-04-18)
+
+
+### Features
+
+* codepen埋め込み対応 ([c97316d](https://github.com/hozi-dev/hozi-dev-packages/commit/c97316dae4e18ede0c09a2d070be832de38bab4d))
+
+
+
+
+
 ## [0.3.6](https://github.com/hozi-dev/hozi-dev-packages/compare/@hozi-dev/content-css@0.3.5...@hozi-dev/content-css@0.3.6) (2021-04-17)
 
 
