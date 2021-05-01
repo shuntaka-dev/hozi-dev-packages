@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.4.1](https://github.com/hozi-dev/hozi-dev-packages/compare/@hozi-dev/content-css@0.4.0...@hozi-dev/content-css@0.4.1) (2021-05-01)
+
+
+### Bug Fixes
+
+* h要素のネガティブマージンがコードブロックのスクロールバーとかぶる問題を解消 ([4042012](https://github.com/hozi-dev/hozi-dev-packages/commit/40420122b83bda8c4d9b02ca8d21ae28e17dc495))
+
+
+
+
+
 # [0.4.0](https://github.com/hozi-dev/hozi-dev-packages/compare/@hozi-dev/content-css@0.3.6...@hozi-dev/content-css@0.4.0) (2021-04-18)
 
 
