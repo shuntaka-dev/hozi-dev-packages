@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.4.0](https://github.com/hozi-dev/hozi-dev-packages/compare/@hozi-dev/markdown-to-html@0.3.0...@hozi-dev/markdown-to-html@0.4.0) (2021-07-02)
+
+
+### Features
+
+* plantumlの埋め込み対応 ([ddcbfd4](https://github.com/hozi-dev/hozi-dev-packages/commit/ddcbfd479e790f01b99549fae51975f83d1da4aa))
+
+
+
+
+
 # [0.3.0](https://github.com/hozi-dev/hozi-dev-packages/compare/@hozi-dev/markdown-to-html@0.2.1...@hozi-dev/markdown-to-html@0.3.0) (2021-04-18)
 
 
