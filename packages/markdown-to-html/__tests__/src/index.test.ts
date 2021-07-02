@@ -101,4 +101,17 @@ ls -al
       );
     });
   });
+
+  describe('plantuml', () => {
+    test('Return uml', () => {
+      const html = HoziDevMarkToHtml.convertToHoziDevHtml(`@startuml
+Bob -> Alice : hello
+@enduml`);
+
+      expect(html).toEqual(
+        `<img src="https://www.plantuml.com/plantuml/svg/SoWkIImgAStDuNBAJrBGjLDmpCbCJbMmKiX8pSd9vt98pKi1IW80" alt="uml diagram" loading="lazy">
+`,
+      );
+    });
+  });
 });

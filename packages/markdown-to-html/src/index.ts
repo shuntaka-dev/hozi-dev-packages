@@ -5,6 +5,7 @@ import MarkdownItAnchor from 'markdown-it-anchor';
 import MarkdownItImageLazyLoading from 'markdown-it-image-lazy-loading';
 import MarkdownItContainer from 'markdown-it-container';
 import MarkdownItPlayground from 'markdown-it-playground';
+import MarkdownItPlantuml from 'markdown-it-plantuml';
 import Token from 'markdown-it/lib/token';
 import Renderer from 'markdown-it/lib/renderer';
 import Prismjs from 'prismjs';
@@ -27,6 +28,7 @@ const convertToHtml = (markdown: string): string => {
     .use(MarkdownItBr)
     .use(MarkdownItImsize)
     .use(MarkdownItImageLazyLoading)
+    .use(MarkdownItPlantuml)
     .use((md) => {
       // costom ``` rule
       const fenceDefaultRenderRule = md.renderer.rules.fence!; // TODO delete non-null assertion
