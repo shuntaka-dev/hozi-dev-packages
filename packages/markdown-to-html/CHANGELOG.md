@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.5.0](https://github.com/hozi-dev/hozi-dev-packages/compare/@hozi-dev/markdown-to-html@0.4.0...@hozi-dev/markdown-to-html@0.5.0) (2021-07-04)
+
+
+### Features
+
+* toml syntaxの追加 ([7793876](https://github.com/hozi-dev/hozi-dev-packages/commit/7793876d621a17f96b49e5a08de1336c9cf1d454))
+
+
+
+
+
 # [0.4.0](https://github.com/hozi-dev/hozi-dev-packages/compare/@hozi-dev/markdown-to-html@0.3.0...@hozi-dev/markdown-to-html@0.4.0) (2021-07-02)
 
 
