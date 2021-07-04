@@ -7,6 +7,7 @@ declare module 'prismjs/components/prism-json';
 declare module 'prismjs/components/prism-css';
 declare module 'prismjs/components/prism-yaml';
 declare module 'prismjs/components/prism-ruby';
+declare module 'prismjs/components/prism-toml';
 declare module 'markdown-it-br';
 declare module 'markdown-it-imsize';
 declare module 'markdown-it-anchor';
