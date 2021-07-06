@@ -10,7 +10,8 @@ import Token from 'markdown-it/lib/token';
 import Renderer from 'markdown-it/lib/renderer';
 import Prismjs from 'prismjs';
 import loadLanguages from 'prismjs/components/';
-import { escapeHtml } from 'markdown-it/lib/common/utils';
+
+import * as ContainerOption from './mdOption/container';
 import 'prismjs/components/prism-bash';
 import 'prismjs/components/prism-vim';
 import 'prismjs/components/prism-typescript';
@@ -49,23 +50,8 @@ const convertToHtml = (markdown: string): string => {
       };
     })
     .use(MarkdownItPlayground)
-    .use(MarkdownItContainer, 'details', {
-      validate: (params: string) => {
-        return params.trim().match(/^details\s+(.*)$/);
-      },
-      render: (tokens: any[], idx: number) => {
-        const m = tokens[idx].info.trim().match(/^details\s+(.*)$/);
-        if (tokens[idx].nesting === 1) {
-          return (
-            '<details><summary>' +
-            escapeHtml(m[1]) +
-            '</summary><div class="details-content">'
-          );
-        } else {
-          return '</div></details>\n';
-        }
-      },
-    })
+    .use(MarkdownItContainer, 'details', ContainerOption.details)
+    .use(MarkdownItContainer, 'message', ContainerOption.message)
     .use(MarkdownItAnchor, {
       level: [1, 2, 3, 4],
       permalink: true,

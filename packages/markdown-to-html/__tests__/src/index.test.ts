@@ -89,6 +89,27 @@ ls -al
     });
   });
 
+  describe('message', () => {
+    describe.each`
+      className
+      ${'info'}
+      ${'warn'}
+      ${'error'}
+      ${'tips'}
+    `('classs=$classの場合', ({ className }) => {
+      test(`Return class="message ${className}" HTML`, () => {
+        const html = HoziDevMarkToHtml.convertToHoziDevHtml(
+          `::: message ${className}\nhere be dragons\n:::`,
+        );
+
+        expect(html)
+          .toEqual(`<div class="message ${className}"><p>here be dragons</p>
+</div>
+`);
+      });
+    });
+  });
+
   describe('embeded', () => {
     describe('codepen', () => {
       const html = HoziDevMarkToHtml.convertToHoziDevHtml(
