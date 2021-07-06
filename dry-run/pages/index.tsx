@@ -32,13 +32,11 @@ const Home = ({ html }) => {
             ></div>
           </div>
         </div>
-        {/*
         <div className={styles.rightSideBar}>
           color: <button className={styles.colorButton} onClick={() => {
             color === 'light' ? setColor('dark') : setColor('light')
           }}>{color === 'light' ? 'dark' : 'light'}</button>
         </div>
-        */}
       </div>
     </div>
   )
