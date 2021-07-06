@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.6.0](https://github.com/hozi-dev/hozi-dev-packages/compare/@hozi-dev/markdown-to-html@0.5.0...@hozi-dev/markdown-to-html@0.6.0) (2021-07-06)
+
+
+### Features
+
+* messageコンテナを追加 ([b23ae8f](https://github.com/hozi-dev/hozi-dev-packages/commit/b23ae8f38bdc623c90cd70bbf4d160bbdb2a28a9))
+
+
+
+
+
 # [0.5.0](https://github.com/hozi-dev/hozi-dev-packages/compare/@hozi-dev/markdown-to-html@0.4.0...@hozi-dev/markdown-to-html@0.5.0) (2021-07-04)
 
 

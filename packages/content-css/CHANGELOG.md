@@ -3,6 +3,22 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.5.0](https://github.com/hozi-dev/hozi-dev-packages/compare/@hozi-dev/content-css@0.4.1...@hozi-dev/content-css@0.5.0) (2021-07-06)
+
+
+### Bug Fixes
+
+* コードブロックの背景を調整 ([b940603](https://github.com/hozi-dev/hozi-dev-packages/commit/b94060392d1c8768a4f5ebbf68d9562400910124))
+
+
+### Features
+
+* message対応,font-sizeの調整 ([7d65ffe](https://github.com/hozi-dev/hozi-dev-packages/commit/7d65ffe8ccd49259582e2343ddb772342ed1a85f))
+
+
+
+
+
 ## [0.4.1](https://github.com/hozi-dev/hozi-dev-packages/compare/@hozi-dev/content-css@0.4.0...@hozi-dev/content-css@0.4.1) (2021-05-01)
 
 
