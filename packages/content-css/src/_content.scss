@@ -57,10 +57,12 @@ hozi-dev-article-content {
   }
 
   h1 {
-    margin-top: 2.3em;
+    font-size: 1.7em;
+    &:not(:first-child) {
+      margin-top: 2.3em;
+    }
     padding-bottom: 0.2em;
     margin-bottom: 1.1rem;
-    font-size: 1.7em;
     position: relative;
     border-bottom: solid 1px var(--tag-h1-border-line-color);
     //display:inline-block;
@@ -85,9 +87,9 @@ hozi-dev-article-content {
   }
 
   h3 {
+    font-size: 1.4em;
     margin-top: 1.0em;
     margin-bottom: 0.5em;
-    font-size: 1.3em;
   }
 
   h4 {
@@ -177,13 +179,13 @@ hozi-dev-article-content {
   th {
     background-color: var(--tag-th-background-color);
     color: var(--tag-th-color);
-    border: 1px solid var(--tag-th-border-color);
+    border: 1px solid var(--tag-th-td-border-color);
     padding: 5px;
   }
 
   td {
     background-color: var(--tag-td-background-color);
-    border: 1px solid var(--tag-td-border-color);
+    border: 1px solid var(--tag-th-td-border-color);
     padding: 10px;
   }
 
@@ -216,6 +218,33 @@ hozi-dev-article-content {
   }
 }
 
+.message {
+  position: relative;
+  margin: 1.5rem 0;
+  padding: 16px;
+  border-radius: 6px;
+  background: var(--message-warn-color);
+  border: 1px solid var(--message-warn-border-color);
+  font-size: 14.5px;
+  line-height: 1.6;
+  & > * {
+    margin: 0.5rem 0;
+    &:first-child,
+    &:last-child {
+      margin: 0;
+    }
+  }
+  a {
+    color: inherit;
+    text-decoration: underline;
+  }
+}
+
+.message.error {
+  background: var(--message-error-color);
+  border: 1px solid var(--message-error-border-color);
+}
+
 .block-embed-service-codepen {
   margin: 1.3rem 0;
 }
@@ -227,11 +256,10 @@ hozi-dev-article-content {
   --tag-a-color: #5C6EB1;
   --tag-a-hover-color: #6686FF;
   --tag-a-visted-color: #6200ac;
-  --tag-th-background-color: #525457;
-  --tag-th-color: #FFF;
-  --tag-th-border-color: #FFF;
+  --tag-th-background-color: #F7FAFC;
+  --tag-th-color: #525457;
   --tag-td-background-color: #FFF;
-  --tag-td-border-color: #000;
+  --tag-th-td-border-color: #525457;
   --tag-h1-border-line-color: #C4C4C4;
   --tag-h2-border-line-color: #C4C4C4;
   --tag-h2-border-line-after-color: #525457;
@@ -240,13 +268,17 @@ hozi-dev-article-content {
   --tag-code-color: #333;
   --tag-blockquote-color: #ddd;
   --tag-blockquote-font-color: #777;
+  --message-warn-color: #FFF2B8;
+  --message-error-color: #EB6E9F36;
+  --message-warn-border-color: #FCC800;
+  --message-error-border-color: #E4007F;
 
   @extend hozi-dev-article-content;
 }
 
 .hozi-dev-article-content-dark {
   @extend hozi-dev-article-content;
-  --bg-color: #2d333b;
+  --bg-color: #22272e;
   --text-color: #c9d5e1;
   --article-area-color: #2D333B;
   --tag-a-color: #539bf5;
@@ -254,9 +286,8 @@ hozi-dev-article-content {
   --tag-a-visted-color: #539bf5;
   --tag-th-background-color: #2d333b;
   --tag-th-color: #c9d5e1;
-  --tag-th-border-color: #c9d5e1;
+  --tag-th-td-border-color: #c9d5e1;
   --tag-td-background-color: #2d333b;
-  --tag-td-border-color: #c9d5e1;
   --tag-h1-border-line-color: #c9d5e1;
   --tag-h2-border-line-color: #584F45;
   --tag-h2-border-line-after-color: #c9d5e1;
@@ -265,6 +296,10 @@ hozi-dev-article-content {
   --tag-code-color: #c9d5e1;
   --tag-blockquote-color: #c9d5e19e;
   --tag-blockquote-font-color: #c9d5e19e;
+  --message-warn-color: #2d333b;
+  --message-error-color: #2d333b;
+  --message-warn-border-color: #FCC800;
+  --message-error-border-color: #E4007F;
 
   @extend hozi-dev-article-content;
 }
