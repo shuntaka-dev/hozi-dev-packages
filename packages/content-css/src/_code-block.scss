@@ -2,7 +2,7 @@
   position: relative; // h要素のマージンとコードブロックのスクロールバーが被る
   z-index: 2; // h要素のマージンとコードブロックのスクロールバーが被る
   margin: 1.3rem 0;
-  background: #2d2d2d;
+  background: #2d333b;
   border-radius: 3px;
   @include mq(sm) {
     font-size: .9em;
