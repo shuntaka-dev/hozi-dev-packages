@@ -21,6 +21,11 @@ import 'prismjs/components/prism-css';
 import 'prismjs/components/prism-yaml';
 import 'prismjs/components/prism-ruby';
 import 'prismjs/components/prism-toml';
+import 'prismjs/components/prism-c';
+import 'prismjs/components/prism-python';
+import 'prismjs/components/prism-diff';
+import 'prismjs/components/prism-perl';
+import 'prismjs/components/prism-cpp';
 
 const convertToHtml = (markdown: string): string => {
   const md = new MarkdownIt({
