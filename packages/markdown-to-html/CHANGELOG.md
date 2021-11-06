@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.8.0](https://github.com/hozi-dev/hozi-dev-packages/compare/@hozi-dev/markdown-to-html@0.7.0...@hozi-dev/markdown-to-html@0.8.0) (2021-11-06)
+
+
+### Features
+
+* 言語ハイライトにluaを追加 ([1403b38](https://github.com/hozi-dev/hozi-dev-packages/commit/1403b38db71a2e187efbbbce20b2bb2493d99639))
+
+
+
+
+
 # [0.7.0](https://github.com/hozi-dev/hozi-dev-packages/compare/@hozi-dev/markdown-to-html@0.6.0...@hozi-dev/markdown-to-html@0.7.0) (2021-09-18)
 
 
