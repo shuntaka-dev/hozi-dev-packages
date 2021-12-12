@@ -20,3 +20,4 @@ declare module 'markdown-it-image-lazy-loading';
 declare module 'markdown-it-playground';
 declare module 'markdown-it-plantuml';
 declare module 'prismjs/components/prism-lua';
+declare module 'prismjs/components/prism-rust';

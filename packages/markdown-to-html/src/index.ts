@@ -27,6 +27,7 @@ import 'prismjs/components/prism-diff';
 import 'prismjs/components/prism-perl';
 import 'prismjs/components/prism-cpp';
 import 'prismjs/components/prism-lua';
+import 'prismjs/components/prism-rust';
 
 const convertToHtml = (markdown: string): string => {
   const md = new MarkdownIt({
