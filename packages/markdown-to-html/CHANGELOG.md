@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.10.2](https://github.com/hozi-dev/hozi-dev-packages/compare/@hozi-dev/markdown-to-html@0.10.1...@hozi-dev/markdown-to-html@0.10.2) (2022-07-03)
+
+
+### Bug Fixes
+
+* mainとtypesのエントリポイントを修正 ([27eba27](https://github.com/hozi-dev/hozi-dev-packages/commit/27eba27e97ef6ccc6c1c244fd6c0059e6acbb987))
+
+
+
+
+
 ## [0.10.1](https://github.com/hozi-dev/hozi-dev-packages/compare/@hozi-dev/markdown-to-html@0.10.0...@hozi-dev/markdown-to-html@0.10.1) (2022-07-03)
 
 
