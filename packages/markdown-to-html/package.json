@@ -14,10 +14,12 @@
     "build/src/**"
   ],
   "scripts": {
-    "build": "yarn clean && yarn compile",
     "lint": "eslint --fix",
     "compile": "tsc",
     "clean": "rm -rf ./build",
+    "build": "rimraf build/* && yarn build:types && yarn build:src",
+    "build:src": "babel ./src --extensions '.ts,.tsx' --ignore '**/*.d.ts' --out-dir ./build",
+    "build:types": "tsc --project ./tsconfig.build.json",
     "test": "yarn jest"
   },
   "dependencies": {
@@ -36,7 +38,12 @@
     "access": "public"
   },
   "devDependencies": {
+    "@babel/cli": "^7.18.6",
+    "@babel/core": "^7.18.6",
+    "@babel/preset-env": "^7.18.6",
+    "@babel/preset-typescript": "^7.18.6",
     "@types/markdown-it": "12.0.1",
-    "@types/prismjs": "1.16.2"
+    "@types/prismjs": "1.16.2",
+    "babel-plugin-prismjs": "^2.1.0"
   }
 }

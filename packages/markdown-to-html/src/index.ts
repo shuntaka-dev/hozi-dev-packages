@@ -111,6 +111,8 @@ const convertToHtml = (markdown: string): string => {
   return md.render(markdown);
 };
 
-export const convertToHoziDevHtml = (markdown: string): string => {
+const convertToHoziDevHtml = (markdown: string): string => {
   return convertToHtml(markdown);
 };
+
+export default convertToHoziDevHtml;

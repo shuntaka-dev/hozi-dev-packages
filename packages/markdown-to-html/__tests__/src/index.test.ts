@@ -1,11 +1,9 @@
-import * as HoziDevMarkToHtml from '../../src';
+import markdownToHtml from '../../src';
 
 describe('convertToHoziDevHtml', () => {
   describe('link', () => {
     test('Return HTML', () => {
-      const html = HoziDevMarkToHtml.convertToHoziDevHtml(
-        `[see github](https://github.com/)`,
-      );
+      const html = markdownToHtml(`[see github](https://github.com/)`);
 
       expect(html).toEqual(
         '<p><a href="https://github.com/" target="_blank" rel="noopener">see github</a></p>\n',
@@ -15,7 +13,7 @@ describe('convertToHoziDevHtml', () => {
 
   describe('code', () => {
     test('Return HTML', () => {
-      const html = HoziDevMarkToHtml.convertToHoziDevHtml(`\`\`\`bash
+      const html = markdownToHtml(`\`\`\`bash
 ls -al
 \`\`\``);
 
@@ -27,7 +25,7 @@ ls -al
 
     describe('& fileName', () => {
       test('Return HTML', () => {
-        const html = HoziDevMarkToHtml.convertToHoziDevHtml(`\`\`\`bash: test.sh
+        const html = markdownToHtml(`\`\`\`bash: test.sh
 ls -al
 \`\`\``);
 
@@ -41,7 +39,7 @@ ls -al
 
   describe('ancher', () => {
     test('Return HTML', () => {
-      const html = HoziDevMarkToHtml.convertToHoziDevHtml('# aaaa');
+      const html = markdownToHtml('# aaaa');
 
       expect(html).toEqual(
         `<h1 id="aaaa"><a class="anchor-link" href="#aaaa" rel="noopener"></a> aaaa</h1>\n`,
@@ -52,7 +50,7 @@ ls -al
   describe('img', () => {
     describe('normal', () => {
       test('Return HTML', () => {
-        const html = HoziDevMarkToHtml.convertToHoziDevHtml(
+        const html = markdownToHtml(
           `![img](https://gyazo.com/f4d63480f0146b89c8824b57dd146b9f)`,
         );
 
@@ -64,7 +62,7 @@ ls -al
 
     describe('specified size', () => {
       test('Return HTML', () => {
-        const html = HoziDevMarkToHtml.convertToHoziDevHtml(
+        const html = markdownToHtml(
           `![img](https://gyazo.com/f4d63480f0146b89c8824b57dd146b9f =200x300)`,
         );
 
@@ -78,7 +76,7 @@ ls -al
   describe('summary', () => {
     describe('simple case', () => {
       test('Return HTML', () => {
-        const html = HoziDevMarkToHtml.convertToHoziDevHtml(
+        const html = markdownToHtml(
           '::: details sourceCode\nhere be dragons\n:::',
         );
 
@@ -98,7 +96,7 @@ ls -al
       ${'tips'}
     `('classs=$classの場合', ({ className }) => {
       test(`Return class="message ${className}" HTML`, () => {
-        const html = HoziDevMarkToHtml.convertToHoziDevHtml(
+        const html = markdownToHtml(
           `::: message ${className}\nhere be dragons\n:::`,
         );
 
@@ -112,7 +110,7 @@ ls -al
 
   describe('embeded', () => {
     describe('codepen', () => {
-      const html = HoziDevMarkToHtml.convertToHoziDevHtml(
+      const html = markdownToHtml(
         '@[codepen](https://codepen.io/shuntaka9576/embed/QWdBzbX)',
       );
 
@@ -125,7 +123,7 @@ ls -al
 
   describe('plantuml', () => {
     test('Return uml', () => {
-      const html = HoziDevMarkToHtml.convertToHoziDevHtml(`@startuml
+      const html = markdownToHtml(`@startuml
 Bob -> Alice : hello
 @enduml`);
 
