@@ -1,6 +1,6 @@
 {
   "name": "@hozi-dev/markdown-to-html",
-  "version": "0.10.2",
+  "version": "0.10.3",
   "description": "blog.hozi.dev markdown parser",
   "author": "shuntaka9576 <shuntaka9576@gmail.com>",
   "homepage": "",
@@ -23,10 +23,10 @@
     "test": "yarn jest"
   },
   "dependencies": {
+    "@steelydylan/markdown-it-imsize": "^1.0.2",
     "@types/markdown-it-container": "2.0.3",
     "markdown-it": "12.0.4",
     "markdown-it-anchor": "7.0.0",
-    "@steelydylan/markdown-it-imsize": "^1.0.2",
     "markdown-it-br": "1.0.0",
     "markdown-it-container": "3.0.0",
     "markdown-it-image-lazy-loading": "1.0.2",

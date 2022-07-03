@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.10.3](https://github.com/hozi-dev/hozi-dev-packages/compare/@hozi-dev/markdown-to-html@0.10.2...@hozi-dev/markdown-to-html@0.10.3) (2022-07-03)
+
+
+### Bug Fixes
+
+* markdown-it-imsizeがfsモジュールに依存していため、Zennで利用さているモジュールに差し替え ([96e1569](https://github.com/hozi-dev/hozi-dev-packages/commit/96e156990046fca62e0f657eee42631ba0f942d8))
+
+
+
+
+
 ## [0.10.2](https://github.com/hozi-dev/hozi-dev-packages/compare/@hozi-dev/markdown-to-html@0.10.1...@hozi-dev/markdown-to-html@0.10.2) (2022-07-03)
 
 
