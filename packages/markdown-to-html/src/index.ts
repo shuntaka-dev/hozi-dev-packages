@@ -1,6 +1,6 @@
 import MarkdownIt from 'markdown-it';
 import MarkdownItBr from 'markdown-it-br';
-import MarkdownItImsize from 'markdown-it-imsize';
+import MarkdownItImsize from '@steelydylan/markdown-it-imsize';
 import MarkdownItAnchor from 'markdown-it-anchor';
 import MarkdownItImageLazyLoading from 'markdown-it-image-lazy-loading';
 import MarkdownItContainer from 'markdown-it-container';
