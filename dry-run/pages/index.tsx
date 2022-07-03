@@ -1,12 +1,12 @@
-import styles from '../styles/Home.module.scss'
-import * as hoziDevMarkdown from '../../packages/markdown-to-html/build/src';
+import styles from '../styles/Home.module.scss';
+import convertToHoziDevHtml from '../../packages/markdown-to-html/build';
 import * as He from 'he';
 import fs from 'fs';
 import { useState } from 'react';
 
 export const getStaticProps = async () => {
-  const testArticleData = fs.readFileSync('./testData/articles/1.md')
-  const html = hoziDevMarkdown.convertToHoziDevHtml(testArticleData.toString())
+  const testArticleData = fs.readFileSync('./testData/articles/1.md');
+  const html = convertToHoziDevHtml(testArticleData.toString());
 
   return {
     props: {
@@ -33,13 +33,19 @@ const Home = ({ html }) => {
           </div>
         </div>
         <div className={styles.rightSideBar}>
-          color: <button className={styles.colorButton} onClick={() => {
-            color === 'light' ? setColor('dark') : setColor('light')
-          }}>{color === 'light' ? 'dark' : 'light'}</button>
+          color:{' '}
+          <button
+            className={styles.colorButton}
+            onClick={() => {
+              color === 'light' ? setColor('dark') : setColor('light');
+            }}
+          >
+            {color === 'light' ? 'dark' : 'light'}
+          </button>
         </div>
       </div>
     </div>
-  )
-}
+  );
+};
 
 export default Home;
