@@ -5,8 +5,8 @@
   "author": "shuntaka9576 <shuntaka9576@gmail.com>",
   "homepage": "",
   "license": "MIT",
-  "main": "build/src/index.js",
-  "types": "build/src/index.d.ts",
+  "main": "build/index.js",
+  "types": "build/index.d.ts",
   "directories": {
     "test": "__tests__"
   },
