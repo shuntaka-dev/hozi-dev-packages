@@ -10,14 +10,12 @@ import Token from 'markdown-it/lib/token';
 import Renderer from 'markdown-it/lib/renderer';
 
 declare global {
-  var a: number;
   // @ts-ignore
   var Prism: {
     disableWorkerMessageHandler: boolean;
   };
 }
 
-global.a = 24;
 (global as any).Prism = { disableWorkerMessageHandler: true };
 
 const Prism = require('prismjs');
