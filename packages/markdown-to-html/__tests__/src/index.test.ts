@@ -18,7 +18,7 @@ ls -al
 \`\`\``);
 
       expect(html)
-        .toEqual(`<div class="code-block-container"><pre class="hozi-dev-code-block"><code class="language-bash"><span class="token function">ls</span> -al
+        .toEqual(`<div class=\"code-block-container\"><pre class=\"hozi-dev-code-block\"><code class=\"language-bash\"><span class=\"token function\">ls</span> <span class=\"token parameter variable\">-al</span>
 </code></pre>
 </div>`);
     });
@@ -29,10 +29,11 @@ ls -al
 ls -al
 \`\`\``);
 
-        expect(html)
-          .toEqual(`<div class="code-block-container"><div class="code-block-filename-container"><span class="code-block-filename"> test.sh</span></div><pre class="hozi-dev-code-block"><code class="language-bash"><span class="token function">ls</span> -al
+        expect(html).toEqual(
+          `<div class="code-block-container"><div class="code-block-filename-container"><span class="code-block-filename"> test.sh</span></div><pre class="hozi-dev-code-block"><code class="language-bash"><span class="token function">ls</span> <span class="token parameter variable">-al</span>
 </code></pre>
-</div>`);
+</div>`,
+        );
       });
     });
   });
