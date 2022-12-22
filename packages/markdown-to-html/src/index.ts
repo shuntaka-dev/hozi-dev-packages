@@ -8,9 +8,10 @@ import MarkdownItPlayground from 'markdown-it-playground';
 import MarkdownItPlantuml from 'markdown-it-plantuml';
 import Token from 'markdown-it/lib/token';
 import Renderer from 'markdown-it/lib/renderer';
-// @ts-ignore
-global.Prism = {
-  disableWorkerMessageHandler: true,
+
+global = {
+  // @ts-ignore
+  Prism: {},
 };
 
 import Prism from 'prismjs';
