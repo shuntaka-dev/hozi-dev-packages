@@ -8,8 +8,11 @@ import MarkdownItPlayground from 'markdown-it-playground';
 import MarkdownItPlantuml from 'markdown-it-plantuml';
 import Token from 'markdown-it/lib/token';
 import Renderer from 'markdown-it/lib/renderer';
+declare global {
+  var Prismjs: { disableWorkerMessageHandler: true };
+}
+
 import Prismjs from 'prismjs';
-Prismjs.disableWorkerMessageHandler = true;
 import loadLanguages from 'prismjs/components/';
 
 import * as ContainerOption from './mdOption/container';
