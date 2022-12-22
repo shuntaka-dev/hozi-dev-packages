@@ -34,6 +34,7 @@ import 'prismjs/components/prism-lua';
 import 'prismjs/components/prism-rust';
 
 const convertToHtml = (markdown: string): string => {
+  Prism.disableWorkerMessageHandler = true;
   const md = new MarkdownIt({
     linkify: true,
     breaks: true,
