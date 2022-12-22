@@ -9,7 +9,8 @@ import MarkdownItPlantuml from 'markdown-it-plantuml';
 import Token from 'markdown-it/lib/token';
 import Renderer from 'markdown-it/lib/renderer';
 declare global {
-  var Prismjs: { disableWorkerMessageHandler: true };
+  // @ts-ignore
+  var Prism: { disableWorkerMessageHandler: true };
 }
 
 import Prismjs from 'prismjs';
