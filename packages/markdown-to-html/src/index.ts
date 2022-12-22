@@ -8,33 +8,17 @@ import MarkdownItPlayground from 'markdown-it-playground';
 import MarkdownItPlantuml from 'markdown-it-plantuml';
 import Token from 'markdown-it/lib/token';
 import Renderer from 'markdown-it/lib/renderer';
-declare global {
-  // @ts-ignore
-  var Prism: { disableWorkerMessageHandler: true };
-}
-import Prism from 'prismjs';
-import loadLanguages from 'prismjs/components/';
+// @ts-ignore
+global.Prism = {
+  disableWorkerMessageHandler: true,
+};
 
+import Prism from 'prismjs';
+
+import loadLanguages from 'prismjs/components/';
 import * as ContainerOption from './mdOption/container';
-import 'prismjs/components/prism-bash';
-import 'prismjs/components/prism-vim';
-import 'prismjs/components/prism-typescript';
-import 'prismjs/components/prism-go';
-import 'prismjs/components/prism-json';
-import 'prismjs/components/prism-css';
-import 'prismjs/components/prism-yaml';
-import 'prismjs/components/prism-ruby';
-import 'prismjs/components/prism-toml';
-import 'prismjs/components/prism-c';
-import 'prismjs/components/prism-python';
-import 'prismjs/components/prism-diff';
-import 'prismjs/components/prism-perl';
-import 'prismjs/components/prism-cpp';
-import 'prismjs/components/prism-lua';
-import 'prismjs/components/prism-rust';
 
 const convertToHtml = (markdown: string): string => {
-  Prism.disableWorkerMessageHandler = true;
   const md = new MarkdownIt({
     linkify: true,
     breaks: true,
