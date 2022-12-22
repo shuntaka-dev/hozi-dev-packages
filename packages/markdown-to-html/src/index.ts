@@ -12,8 +12,7 @@ declare global {
   // @ts-ignore
   var Prism: { disableWorkerMessageHandler: true };
 }
-
-import Prismjs from 'prismjs';
+import Prism from 'prismjs';
 import loadLanguages from 'prismjs/components/';
 
 import * as ContainerOption from './mdOption/container';
@@ -72,16 +71,16 @@ const convertToHtml = (markdown: string): string => {
       permalinkClass: 'anchor-link',
     });
   md.options.highlight = (str: string, lang: string): string => {
-    const prismLang = ((): Prismjs.Grammar => {
-      const la = Prismjs.languages[lang];
+    const prismLang = ((): Prism.Grammar => {
+      const la = Prism.languages[lang];
       if (la === undefined) {
         loadLanguages([lang]);
-        return Prismjs.languages[lang];
+        return Prism.languages[lang];
       }
 
       return la;
     })();
-    const highlightedtext = Prismjs.highlight(str, prismLang, lang);
+    const highlightedtext = Prism.highlight(str, prismLang, lang);
 
     return `<pre class="hozi-dev-code-block"><code class="language-${lang}">${highlightedtext}</code></pre>`;
   };
