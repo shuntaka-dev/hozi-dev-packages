@@ -9,10 +9,10 @@ import MarkdownItPlantuml from 'markdown-it-plantuml';
 import Token from 'markdown-it/lib/token';
 import Renderer from 'markdown-it/lib/renderer';
 
-global = {
-  // @ts-ignore
-  Prism: {},
-};
+// global = {
+//   // @ts-ignore
+//   Prism: {},
+// };
 
 import Prism from 'prismjs';
 
