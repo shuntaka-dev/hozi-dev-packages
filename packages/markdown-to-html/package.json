@@ -1,6 +1,6 @@
 {
   "name": "@hozi-dev/markdown-to-html",
-  "version": "0.10.4",
+  "version": "0.10.5",
   "description": "blog.hozi.dev markdown parser",
   "author": "shuntaka9576 <shuntaka9576@gmail.com>",
   "homepage": "",
@@ -43,7 +43,6 @@
     "@babel/preset-env": "^7.18.6",
     "@babel/preset-typescript": "^7.18.6",
     "@types/markdown-it": "12.0.1",
-    "@types/prismjs": "1.16.2",
     "@types/prismjs": "1.26.0",
     "babel-plugin-prismjs": "^2.1.0"
   }
