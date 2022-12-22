@@ -9,6 +9,7 @@ import MarkdownItPlantuml from 'markdown-it-plantuml';
 import Token from 'markdown-it/lib/token';
 import Renderer from 'markdown-it/lib/renderer';
 import Prismjs from 'prismjs';
+Prismjs.disableWorkerMessageHandler = true;
 import loadLanguages from 'prismjs/components/';
 
 import * as ContainerOption from './mdOption/container';
@@ -28,8 +29,6 @@ import 'prismjs/components/prism-perl';
 import 'prismjs/components/prism-cpp';
 import 'prismjs/components/prism-lua';
 import 'prismjs/components/prism-rust';
-
-Prismjs.disableWorkerMessageHandler = true;
 
 const convertToHtml = (markdown: string): string => {
   const md = new MarkdownIt({
