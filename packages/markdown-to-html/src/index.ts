@@ -9,13 +9,18 @@ import MarkdownItPlantuml from 'markdown-it-plantuml';
 import Token from 'markdown-it/lib/token';
 import Renderer from 'markdown-it/lib/renderer';
 
-// global = {
-//   // @ts-ignore
-//   Prism: {},
-// };
+declare global {
+  var a: number;
+  // @ts-ignore
+  var Prism: {
+    disableWorkerMessageHandler: boolean;
+  };
+}
 
-import Prism from 'prismjs';
+global.a = 24;
+(global as any).Prism = { disableWorkerMessageHandler: true };
 
+const Prism = require('prismjs');
 import loadLanguages from 'prismjs/components/';
 import * as ContainerOption from './mdOption/container';
 
