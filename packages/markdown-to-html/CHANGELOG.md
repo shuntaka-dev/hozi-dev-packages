@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.11.14](https://github.com/hozi-dev/hozi-dev-packages/compare/@hozi-dev/markdown-to-html@0.11.13...@hozi-dev/markdown-to-html@0.11.14) (2023-08-04)
+
+
+### Bug Fixes
+
+* denops ([0fb515c](https://github.com/hozi-dev/hozi-dev-packages/commit/0fb515c2ab16c8b7a93615d85de5276b2874e540))
+
+
+
+
+
 ## [0.11.13](https://github.com/hozi-dev/hozi-dev-packages/compare/@hozi-dev/markdown-to-html@0.11.12...@hozi-dev/markdown-to-html@0.11.13) (2023-08-04)
 
 
