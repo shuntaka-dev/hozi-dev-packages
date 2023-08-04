@@ -16,9 +16,16 @@ declare global {
   };
 }
 
-(global as any).Prism = { disableWorkerMessageHandler: true };
+// Node.js とブラウザ両方で動作するように環境をチェック
+if (typeof window !== 'undefined') {
+  // ブラウザ環境
+  (self as any).Prism = { disableWorkerMessageHandler: true };
+} else if (typeof global !== 'undefined') {
+  // Node.js環境
+  (global as any).Prism = { disableWorkerMessageHandler: true };
+}
 
-import Prism from 'prismjs';
+const Prism = require('prismjs');
 import loadLanguages from 'prismjs/components/';
 import * as ContainerOption from './mdOption/container';
 
