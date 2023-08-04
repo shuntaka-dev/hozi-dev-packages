@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.11.11](https://github.com/hozi-dev/hozi-dev-packages/compare/@hozi-dev/markdown-to-html@0.11.10...@hozi-dev/markdown-to-html@0.11.11) (2023-08-04)
+
+
+### Bug Fixes
+
+* global object ([d5942cd](https://github.com/hozi-dev/hozi-dev-packages/commit/d5942cd5eed82618cb762b3c7e794287550b754a))
+
+
+
+
+
 ## [0.11.10](https://github.com/hozi-dev/hozi-dev-packages/compare/@hozi-dev/markdown-to-html@0.11.9...@hozi-dev/markdown-to-html@0.11.10) (2022-12-22)
 
 
