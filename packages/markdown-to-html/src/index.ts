@@ -4,7 +4,6 @@ import MarkdownItImsize from '@steelydylan/markdown-it-imsize';
 import MarkdownItAnchor from 'markdown-it-anchor';
 import MarkdownItImageLazyLoading from 'markdown-it-image-lazy-loading';
 import MarkdownItContainer from 'markdown-it-container';
-import MarkdownItPlayground from 'markdown-it-playground';
 import MarkdownItPlantuml from 'markdown-it-plantuml';
 import Token from 'markdown-it/lib/token';
 import Renderer from 'markdown-it/lib/renderer';
@@ -42,6 +41,65 @@ const convertToHtml = (markdown: string): string => {
     .use(MarkdownItImageLazyLoading)
     .use(MarkdownItPlantuml)
     .use((md) => {
+      md.renderer.rules.custom = function tokenizeBlock(tokens, idx) {
+        const { tag, arg }: any = tokens[idx].info;
+
+        if (tag === 'sd') {
+          const [slideId, sliedNo] = arg.split(',');
+
+          if (slideId != null && sliedNo != null) {
+            return `<script defer class="speakerdeck-embed" data-slide="${sliedNo}" data-id="${slideId}" data-ratio="1.3333333333333333" src="//speakerdeck.com/assets/embed.js"></script>\n`;
+          } else {
+            return `<script defer class="speakerdeck-embed" data-id="${slideId}" data-ratio="1.3333333333333333" src="//speakerdeck.com/assets/embed.js"></script>\n`;
+          }
+        } else if (tag === 'codepen') {
+          return `<div class="block-embed block-embed-service-codepen"><iframe type="text/html" src="${arg}" frameborder="0" width="100%" height="300" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe></div>
+`;
+        }
+
+        return '';
+      };
+      md.block.ruler.before(
+        'fence',
+        'custom',
+        function customEmbed(state, startLine, endLine, silent) {
+          const startPos = state.bMarks[startLine] + state.tShift[startLine];
+          const maxPos = state.eMarks[startLine];
+          const block = state.src.slice(startPos, maxPos);
+          const pointer = { line: startLine, pos: startPos };
+
+          if (state.src.charCodeAt(pointer.pos) !== 0x40 /* @ */) {
+            return false;
+          }
+
+          const embedRE = /@\[([\w-]+)\]\((.+)\)/im;
+          const match = embedRE.exec(block);
+
+          if (!match || match.length < 3) {
+            return false;
+          }
+
+          const [all, tag, arg] = match;
+
+          pointer.pos += all.length;
+
+          if (pointer.line >= endLine) return false;
+          if (!silent) {
+            const token = state.push('custom', 'div', 0);
+            token.markup = state.src.slice(startPos, pointer.pos);
+            // eslint-disable-next-line
+            token.info = { arg, tag } as any;
+            token.block = true;
+            token.map = [startLine, pointer.line + 1];
+            state.line = pointer.line + 1;
+          }
+
+          return true;
+        },
+        { alt: ['paragraph', 'reference', 'blockquote', 'list'] },
+      );
+    })
+    .use((md) => {
       // costom ``` rule
       const fenceDefaultRenderRule = md.renderer.rules.fence!; // TODO delete non-null assertion
       md.renderer.rules.fence = (tokens, idx, options, env, self) => {
@@ -59,7 +117,6 @@ const convertToHtml = (markdown: string): string => {
         return `<div class="code-block-container">${filenameHtml}${html}</div>`;
       };
     })
-    .use(MarkdownItPlayground)
     .use(MarkdownItContainer, 'details', ContainerOption.details)
     .use(MarkdownItContainer, 'message', ContainerOption.message)
     .use(MarkdownItAnchor, {

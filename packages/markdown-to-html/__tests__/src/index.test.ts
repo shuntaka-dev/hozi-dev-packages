@@ -122,6 +122,30 @@ ls -al
     });
   });
 
+  describe('speakerdeck', () => {
+    test('Return embed html', () => {
+      const html = markdownToHtml(`@[sd](2ac6cd2798264833af10d9b36c36a79c)`);
+
+      expect(html).toEqual(
+        `<script defer class=\"speakerdeck-embed\" data-id=\"2ac6cd2798264833af10d9b36c36a79c\" data-ratio=\"1.3333333333333333\" src=\"//speakerdeck.com/assets/embed.js\"></script>
+`,
+      );
+    });
+
+    describe('specify sliedNo', () => {
+      test('Return embed html', () => {
+        const html = markdownToHtml(
+          `@[sd](2ac6cd2798264833af10d9b36c36a79c,1)`,
+        );
+
+        expect(html).toEqual(
+          `<script defer class=\"speakerdeck-embed\" data-slide=\"1\" data-id=\"2ac6cd2798264833af10d9b36c36a79c\" data-ratio=\"1.3333333333333333\" src=\"//speakerdeck.com/assets/embed.js\"></script>
+`,
+        );
+      });
+    });
+  });
+
   describe('plantuml', () => {
     test('Return uml', () => {
       const html = markdownToHtml(`@startuml
