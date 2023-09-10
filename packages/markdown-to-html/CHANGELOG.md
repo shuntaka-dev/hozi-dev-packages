@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.12.1](https://github.com/hozi-dev/hozi-dev-packages/compare/@hozi-dev/markdown-to-html@0.12.0...@hozi-dev/markdown-to-html@0.12.1) (2023-09-10)
+
+
+### Bug Fixes
+
+* embed speaker deck(script->iframe) ([ef5fe6c](https://github.com/hozi-dev/hozi-dev-packages/commit/ef5fe6cb485918ecd9772e673c32f37a0ca348b0))
+
+
+
+
+
 # [0.12.0](https://github.com/hozi-dev/hozi-dev-packages/compare/@hozi-dev/markdown-to-html@0.11.15...@hozi-dev/markdown-to-html@0.12.0) (2023-09-08)
 
 
