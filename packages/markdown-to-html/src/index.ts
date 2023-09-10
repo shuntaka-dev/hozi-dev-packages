@@ -45,12 +45,17 @@ const convertToHtml = (markdown: string): string => {
         const { tag, arg }: any = tokens[idx].info;
 
         if (tag === 'sd') {
-          const [slideId, sliedNo] = arg.split(',');
+          const [slideId, sliedNo, aspectRetio, dataRetio] = arg.split(',');
 
-          if (slideId != null && sliedNo != null) {
-            return `<script defer class="speakerdeck-embed" data-slide="${sliedNo}" data-id="${slideId}" data-ratio="1.3333333333333333" src="//speakerdeck.com/assets/embed.js"></script>\n`;
+          if (
+            slideId != null &&
+            sliedNo != '' &&
+            aspectRetio != null &&
+            dataRetio != null
+          ) {
+            return `<div class="block-embed-service-speakerdeck"><iframe class="speakerdeck-iframe" frameborder="0" src="https://speakerdeck.com/player/${slideId}?slide=${sliedNo}" allowfullscreen="true" style="border: 0px; background: padding-box padding-box rgba(0, 0, 0, 0.1); margin: 0px; padding: 0px; border-radius: 6px; box-shadow: rgba(0, 0, 0, 0.2) 0px 5px 40px; width: 100%; height: auto; aspect-ratio: ${aspectRetio};" data-ratio="${dataRetio}"></iframe></div>\n`;
           } else {
-            return `<script defer class="speakerdeck-embed" data-id="${slideId}" data-ratio="1.3333333333333333" src="//speakerdeck.com/assets/embed.js"></script>\n`;
+            return `<div class="block-embed-service-speakerdeck"><iframe class="speakerdeck-iframe" frameborder="0" src="https://speakerdeck.com/player/${slideId}" allowfullscreen="true" style="border: 0px; background: padding-box padding-box rgba(0, 0, 0, 0.1); margin: 0px; padding: 0px; border-radius: 6px; box-shadow: rgba(0, 0, 0, 0.2) 0px 5px 40px; width: 100%; height: auto; aspect-ratio: ${aspectRetio};" data-ratio="${dataRetio}"></iframe></div>\n`;
           }
         } else if (tag === 'codepen') {
           return `<div class="block-embed block-embed-service-codepen"><iframe type="text/html" src="${arg}" frameborder="0" width="100%" height="300" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe></div>

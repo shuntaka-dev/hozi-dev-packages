@@ -124,23 +124,23 @@ ls -al
 
   describe('speakerdeck', () => {
     test('Return embed html', () => {
-      const html = markdownToHtml(`@[sd](2ac6cd2798264833af10d9b36c36a79c)`);
+      const html = markdownToHtml(
+        `@[sd](2ac6cd2798264833af10d9b36c36a79c,,560/420,1.3)`,
+      );
 
       expect(html).toEqual(
-        `<script defer class=\"speakerdeck-embed\" data-id=\"2ac6cd2798264833af10d9b36c36a79c\" data-ratio=\"1.3333333333333333\" src=\"//speakerdeck.com/assets/embed.js\"></script>
-`,
+        `<div class="block-embed-service-speakerdeck"><iframe class="speakerdeck-iframe" frameborder="0" src="https://speakerdeck.com/player/2ac6cd2798264833af10d9b36c36a79c" allowfullscreen="true" style="border: 0px; background: padding-box padding-box rgba(0, 0, 0, 0.1); margin: 0px; padding: 0px; border-radius: 6px; box-shadow: rgba(0, 0, 0, 0.2) 0px 5px 40px; width: 100%; height: auto; aspect-ratio: 560/420;" data-ratio="1.3"></iframe></div>\n`,
       );
     });
 
     describe('specify sliedNo', () => {
       test('Return embed html', () => {
         const html = markdownToHtml(
-          `@[sd](2ac6cd2798264833af10d9b36c36a79c,1)`,
+          `@[sd](2ac6cd2798264833af10d9b36c36a79c,3,560/420,1.3)`,
         );
 
         expect(html).toEqual(
-          `<script defer class=\"speakerdeck-embed\" data-slide=\"1\" data-id=\"2ac6cd2798264833af10d9b36c36a79c\" data-ratio=\"1.3333333333333333\" src=\"//speakerdeck.com/assets/embed.js\"></script>
-`,
+          `<div class="block-embed-service-speakerdeck"><iframe class="speakerdeck-iframe" frameborder="0" src="https://speakerdeck.com/player/2ac6cd2798264833af10d9b36c36a79c?slide=3" allowfullscreen="true" style="border: 0px; background: padding-box padding-box rgba(0, 0, 0, 0.1); margin: 0px; padding: 0px; border-radius: 6px; box-shadow: rgba(0, 0, 0, 0.2) 0px 5px 40px; width: 100%; height: auto; aspect-ratio: 560/420;" data-ratio="1.3"></iframe></div>\n`,
         );
       });
     });

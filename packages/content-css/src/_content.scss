@@ -249,6 +249,14 @@ hozi-dev-article-content {
   margin: 1.3rem 0;
 }
 
+.block-embed-service-speakerdeck {
+  margin: 1.3rem 0;
+  width: 80%;
+  @include mq(md) {
+    width: 100%;
+  }
+}
+
 .hozi-dev-article-content-light {
   --bg-color: #FFF;
   --text-color: #333;
