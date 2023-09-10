@@ -3,6 +3,22 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.12.3](https://github.com/hozi-dev/hozi-dev-packages/compare/@hozi-dev/markdown-to-html@0.12.2...@hozi-dev/markdown-to-html@0.12.3) (2023-09-10)
+
+
+### Bug Fixes
+
+* add load lang ([13e5b6c](https://github.com/hozi-dev/hozi-dev-packages/commit/13e5b6c67876c796a3bf92795c3666f1994a8a8b))
+
+
+### Reverts
+
+* Revert "fix: component._default is not a function" ([421a52e](https://github.com/hozi-dev/hozi-dev-packages/commit/421a52e7271f9fd2af692f4c2b51868f2bb1f285))
+
+
+
+
+
 ## [0.12.2](https://github.com/hozi-dev/hozi-dev-packages/compare/@hozi-dev/markdown-to-html@0.12.1...@hozi-dev/markdown-to-html@0.12.2) (2023-09-10)
 
 
