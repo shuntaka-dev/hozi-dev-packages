@@ -132,15 +132,14 @@ const convertToHtml = (markdown: string): string => {
       permalinkClass: 'anchor-link',
     });
   md.options.highlight = (str: string, lang: string): string => {
-    const prismLang = ((): Prism.Grammar | undefined => {
-      if (!lang) return undefined;
-      let langObject = Prism.languages[lang];
-
-      if (langObject === undefined) {
+    const prismLang = ((): Prism.Grammar => {
+      const la = Prism.languages[lang];
+      if (la === undefined) {
         loadLanguages([lang]);
-        langObject = Prism.languages[lang];
+        return Prism.languages[lang];
       }
-      return langObject;
+
+      return la;
     })();
     const highlightedtext = Prism.highlight(str, prismLang, lang);
 
